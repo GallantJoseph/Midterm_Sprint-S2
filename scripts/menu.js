@@ -38,9 +38,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
       let itemPrice = element.itemPrice;
 
-      let menuElementHTML = `<h3>${element.itemName}</h3>
-                             <p>${element.itemDesc}</p>
-                             <h4>\$${element.itemPrice}</h4>
+      let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
+                             <p class = "item-description">${element.itemDesc}</p>
+                             <h4 class = "item-price">\$${element.itemPrice}</h4>
                              <button class="menubutton" onclick="event.preventDefault">Add to Cart</button>`;
 
       menuElement.innerHTML += menuElementHTML;
