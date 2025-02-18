@@ -5,7 +5,6 @@
 #pageContainer {
   display: grid;
   grid-template-columns: 1fr;
-  height: 100vh;
   gap: 16px;
   width: 100%;
   max-width: 1200px;
@@ -52,6 +51,10 @@ nav a:hover {
   background-color: rgba(245, 245, 220, 0.764);
   color: #030303e6;
   transform: scale(1.1);
+}
+
+p {
+  line-height: 1.7rem;
 }
 
 .menu-item {
@@ -117,6 +120,7 @@ nav a:hover {
 
 #statusText {
   background-color: rgba(0, 0, 0, 50%);
+  padding-left: 16px;
 }
 .success {
   color: green;
@@ -141,8 +145,18 @@ form div {
 }
 
 #menu-section {
-  background-color: #ccb7a7;
-  gap: 16px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  background-color: #ccb7a7;
+}
+
+#order-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+#order-receipt {
+  background-color: rgba(255, 255, 255, 50%);
+  border: 2px solid black;
 }
