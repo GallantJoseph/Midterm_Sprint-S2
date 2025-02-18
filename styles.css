@@ -50,8 +50,10 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-.menuItem {
-  margin: 10px;
+.menu-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 20px;
   background-color: #654835;
   color: white;
   border: 2px solid rgb(216, 195, 179);
@@ -63,7 +65,7 @@ nav a:hover {
   text-align: center;
 }
 
-.menuItem img {
+.menu-item img {
   border: 1px solid beige;
   width: 100%;
   height: 200px;
@@ -72,14 +74,15 @@ nav a:hover {
 }
 
 .item-name {
-  color: white;
-  font-size: 20px;
+  /* we need to update name to match Js*/
+  color: rgb(255, 255, 255);
+  font-size: 28px;
   font-weight: bold;
   margin-top: 10px;
 }
 
 .item-price {
-  color: white;
+  color: rgb(255, 255, 255); /* we need to update name to match Js*/
   font-size: 18px;
   margin: 5px;
   font-weight: bold;
@@ -87,21 +90,24 @@ nav a:hover {
 
 .item-description {
   font-size: 14px;
-  color: white;
+  color: rgb(255, 255, 255); /* we need to update name to match Js*/
   margin: 10px;
 }
 
-.add-to-cart {
+.menubutton {
+  margin: auto;
   background-color: #ccb7a7;
+  width: 100px;
   color: black;
-  padding: 10px 20px;
+  padding: 8px;
   border: none;
   border-radius: 5px;
   font-size: 16px;
   transition: transfrom 0.3s ease;
+  text-decoration: none;
 }
 
-.add-to-cart:hover {
+.menubutton:hover {
   transform: scale(1.1);
 }
 
@@ -131,23 +137,8 @@ form div {
 }
 
 #menu-section {
+  background-color: #ccb7a7;
+  gap: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-}
-
-.menu-item {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 16px;
-  text-align: center;
-  border: 1px solid black;
-}
-
-.menubutton {
-  display: block;
-  width: 96px;
-  margin: auto;
-  font-size: 1.5rem;
-  border: 1px solid black;
-  border-radius: 15px;
 }
