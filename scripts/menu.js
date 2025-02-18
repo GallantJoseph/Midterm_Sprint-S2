@@ -26,11 +26,11 @@ window.addEventListener("DOMContentLoaded", () => {
   function createMenuElement(data) {
     data.forEach((element) => {
       let menuElement = document.createElement("div");
-      menuElement.className = "menu-item";
+      menuElement.className = "menuItem";
 
       let image = document.createElement("img");
-      image.width = 350;
-      image.height = 350;
+      // image.width = 350;
+      // image.height = 350;
       image.src = element.itemImage;
       image.alt = element.itemName;
 
@@ -40,8 +40,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       let menuElementHTML = `<h3>${element.itemName}</h3>
                              <p>${element.itemDesc}</p>
-                             <h4>${element.itemPrice}</h4>
-                             <a class="menubutton" href="#" onclick="event.preventDefault}">Add</a>`;
+                             <h4>\$${element.itemPrice}</h4>
+                             <button class="add-to-cart" onclick="event.preventDefault">Add to Cart</button>`;
 
       menuElement.innerHTML += menuElementHTML;
 
