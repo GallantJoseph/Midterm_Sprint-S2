@@ -8,7 +8,6 @@
 
 window.addEventListener("DOMContentLoaded", () => {
   // Read menu from JSON file
-
   function generateMenu() {
     let menuPromise = fetch("../data/menu.json");
 
@@ -36,12 +35,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
       menuElement.appendChild(image);
 
-      let itemPrice = element.itemPrice;
-
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
                              <p class = "item-description">${element.itemDesc}</p>
                              <h4 class = "item-price">\$${element.itemPrice}</h4>
-                             <button class="menubutton" onclick="event.preventDefault">Add to Cart</button>`;
+                             <button class="menubutton" onclick="addItem(${element.itemId})">Add to Cart</button>`;
 
       menuElement.innerHTML += menuElementHTML;
 
@@ -49,9 +46,34 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function addItem(id, evt) {
-    evt.preventDefault();
-  }
-
   generateMenu();
 });
+
+// Add an Item to localStorage order key
+
+function addItem(id) {
+  let orderStorage = localStorage.getItem("order");
+
+  let orderObj = { itemId: id, itemQuantity: 1 };
+
+  if (orderStorage === null) {
+    localStorage.setItem("order", `[${JSON.stringify(orderObj)}]`);
+  } else {
+    let orders = JSON.parse(orderStorage);
+
+    let replaced = false;
+    for (let i = 0; i < orders.length; i++) {
+      if (orders[i].itemId === id) {
+        orders[i].itemQuantity += 1;
+        replaced = true;
+        break;
+      }
+    }
+
+    if (!replaced) {
+      orders.push(orderObj);
+    }
+
+    localStorage.setItem("order", JSON.stringify(orders));
+  }
+}
