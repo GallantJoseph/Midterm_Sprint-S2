@@ -52,8 +52,23 @@ nav a:hover {
   color: #030303e6;
   transform: scale(1.1);
 }
-
-p {
+.aboutUs {
+  background-color: rgba(245, 245, 220, 0.631);
+  border-radius: 8px;
+  border: 2px solid rgb(244, 244, 222);
+  padding: 20px;
+  margin: auto;
+  margin-top: 30px;
+  width: 700px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+.aboutUs h2 {
+  color: black;
+  text-align: center;
+  font-size: 24pt;
+}
+.aboutUs p {
+  color: black;
   line-height: 1.7rem;
 }
 
