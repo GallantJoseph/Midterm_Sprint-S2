@@ -171,8 +171,33 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Display the order
   function displayOrder() {
-    menuItems.forEach((menuItem) => {
-      console.log(menuItem.itemName);
+    let orderElement = document.querySelector("#order-details");
+
+    menuItems.forEach((element) => {
+      let menuElement = document.createElement("div");
+
+      menuElement.className = "menu-item";
+
+      let image = document.createElement("img");
+      image.src = element.itemImage;
+      image.alt = element.itemName;
+
+      menuElement.appendChild(image);
+
+      let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
+                             <p class = "item-description">${element.itemDesc}</p>
+                             <h4 class = "item-price">\$${element.itemPrice}</h4>
+                             <div class="quantity-element">
+                             <label for="quantityTextBox${element.itemId}">Quantity</label>
+                             <button class="menubutton">-</button>
+                             <input type="text" name="quantityTextBox${element.itemId}" id="quantityTextBox${element.itemId}" value="1" />
+                             <button class="menubutton">+</button>
+                             </div>
+                             <button class="menubutton" onclick="updateItem(${element.itemId},0)">Remove</button>`;
+
+      menuElement.innerHTML += menuElementHTML;
+
+      orderElement.appendChild(menuElement);
     });
   }
 

@@ -121,15 +121,14 @@ nav a:hover {
 }
 
 .item-name {
-  /* we need to update name to match Js*/
-  color: rgb(255, 255, 255);
+  color: white;
   font-size: 28px;
   font-weight: bold;
   margin-top: 10px;
 }
 
 .item-price {
-  color: rgb(255, 255, 255); /* we need to update name to match Js*/
+  color: white;
   font-size: 18px;
   margin: 5px;
   font-weight: bold;
@@ -137,12 +136,14 @@ nav a:hover {
 
 .item-description {
   font-size: 14px;
-  color: rgb(255, 255, 255); /* we need to update name to match Js*/
+  color: white;
   margin: 10px;
 }
 
 .menubutton {
   margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
   background-color: #ccb7a7;
   width: 100px;
   color: black;
@@ -211,6 +212,32 @@ form div {
 .menu-category {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.quantity-element {
+  display: grid;
+  justify-items: center;
+  grid-template-areas: "label label label";
+  gap: 8px;
+}
+
+.quantity-element label {
+  grid-area: label;
+}
+
+.quantity-element button {
+  width: fit-content;
+  font-weight: bold;
+}
+
+.quantity-element input {
+  font-size: 2rem;
+  background-color: #654835;
+  text-align: center;
+  color: white;
+  width: 3rem;
+  border: 2px solid white;
+  border-radius: 10px;
 }
 
 #order-receipt {
