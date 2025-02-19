@@ -90,6 +90,33 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 2000);
   }
 
+  function receiptValues(discountAmount = 0, ...cartItemsPrice) {
+    // Have a list of valid discounts with corresponding discount amounts in decimal format
+    // e.g. "Python" = 20% off = 0.2
+
+    let allItemsPrice = 0;
+    cartItemsPrice.forEach((price) => {
+      allItemsPrice += price;
+    });
+
+    let hst = allItemsPrice * 0.15;
+    let total = allItemsPrice + hst;
+
+    let discount = 0;
+    let discountedTotal = 0;
+    if (discountAmount !== 0) {
+      discount = total * discountAmount;
+      discountedTotal = total - discountAmount;
+    }
+
+    return [allItemsPrice, hst, total, discount, discountedTotal];
+    // since i dont really know how the receipt should look,
+    // i calculate all the values and return them in an array
+    // so its easy to implement elsewhere.
+    // you can probably just do something like:
+    // let receiptValues = receiptValues(1.99, 2.38, etc...);
+  }
+
   // Show the Current Order Section
   class MenuItem {
     constructor(
