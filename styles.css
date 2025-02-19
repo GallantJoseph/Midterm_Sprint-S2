@@ -161,7 +161,7 @@ form div {
 
 #menu-section {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   background-color: #ccb7a7;
 }
 
@@ -169,6 +169,11 @@ form div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+}
+
+.menu-category {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 #order-receipt {

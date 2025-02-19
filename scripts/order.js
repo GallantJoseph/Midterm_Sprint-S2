@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
       try {
         validateOrderFields();
 
-        resolve("Order Submitted");
+        resolve("Thank You For Your Order!");
       } catch (error) {
         reject(error.message);
       }
@@ -87,6 +87,72 @@ window.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       statusText.innerHTML = "";
-    }, 5000);
+    }, 2000);
   }
+
+  // Show the Current Order Section
+  class MenuItem {
+    constructor(
+      itemId,
+      itemCategory,
+      itemName,
+      itemDesc,
+      itemPrice,
+      itemImage
+    ) {
+      this.itemId = itemId;
+      this.itemCategory = itemCategory;
+      this.itemName = itemName;
+      this.itemDesc = itemDesc;
+      this.itemPrice = itemPrice;
+      this.itemImage = itemImage;
+    }
+  }
+
+  let menuItems = [];
+
+  // Create an array of all the MenuItem objects from a JSON file
+  function createMenuItems() {
+    let menuPromise = fetch("../data/menu.json");
+
+    menuPromise
+      .then((response) => {
+        if (response.status === 200) {
+          response
+            .json()
+            .then((data) => {
+              data.forEach((element) => {
+                let menuItem = new MenuItem(
+                  element.itemId,
+                  element.itemCategory,
+                  element.itemName,
+                  element.itemDesc,
+                  element.itemPrice,
+                  element.itemImage
+                );
+
+                menuItems.push(menuItem);
+              });
+            })
+            .catch((reject) => alert(reject));
+        }
+      })
+      .catch((reject) => alert(reject));
+
+    return menuPromise;
+  }
+
+  // Display the order
+  function displayOrder() {
+    menuItems.forEach((menuItem) => {
+      console.log(menuItem.itemName);
+    });
+  }
+
+  createMenuItems();
+
+  // // TODO: Find a way to only execute code after the createMenuItems is done
+  setTimeout(() => {
+    displayOrder();
+  }, 500);
 });

@@ -25,11 +25,10 @@ window.addEventListener("DOMContentLoaded", () => {
   function createMenuElement(data) {
     data.forEach((element) => {
       let menuElement = document.createElement("div");
+
       menuElement.className = "menu-item";
 
       let image = document.createElement("img");
-      image.width = 350;
-      image.height = 350;
       image.src = element.itemImage;
       image.alt = element.itemName;
 
@@ -42,7 +41,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
       menuElement.innerHTML += menuElementHTML;
 
-      document.querySelector("#menu-section").appendChild(menuElement);
+      let itemCategory = element.itemCategory;
+
+      document.querySelector(`#${itemCategory}`).appendChild(menuElement);
     });
   }
 
