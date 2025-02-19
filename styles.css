@@ -72,6 +72,31 @@ nav a:hover {
   line-height: 1.7rem;
 }
 
+.review-card {
+  border: 8px solid #654835;
+  background-color: rgba(245, 245, 220, 0.905);
+  padding: 10px;
+  margin: 15px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  text-align: center;
+  max-width: 400px;
+}
+
+.review-card h3 {
+  font-size: 16pt;
+  margin-bottom: 10px;
+}
+
+.review-card p {
+  font-size: 14pt;
+  margin-bottom: 10px;
+}
+.review-card .star {
+  margin: auto;
+  color: rgb(5, 5, 5);
+}
+
 .menu-item {
   display: grid;
   grid-template-columns: 1fr;
@@ -123,7 +148,7 @@ nav a:hover {
   color: black;
   padding: 8px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
   transition: transfrom 0.3s ease;
   text-decoration: none;
@@ -131,6 +156,18 @@ nav a:hover {
 
 .menubutton:hover {
   transform: scale(1.1);
+}
+.menubuttonClicked {
+  margin: auto;
+  background-color: #5aab5f;
+  width: 100px;
+  color: black;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: transfrom 0.3s ease;
+  text-decoration: none;
 }
 
 #statusText {
