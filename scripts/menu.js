@@ -52,10 +52,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Add an Item to localStorage order key
 
-function addItem(id) {
+function addItem(id, price, name) {
   let orderStorage = localStorage.getItem("order");
 
-  let orderObj = { itemId: id, itemQuantity: 1 };
+  let orderObj = {
+    itemId: id,
+    itemQuantity: 1,
+    itemPrice: price,
+    itemName: name,
+  };
 
   if (orderStorage === null) {
     localStorage.setItem("order", `[${JSON.stringify(orderObj)}]`);
