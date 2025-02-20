@@ -86,7 +86,7 @@
   position: relative;
 }
 
-.cart-bubble {
+#cart-bubble {
   position: absolute;
   top: -16px;
   right: -16px;
