@@ -36,11 +36,15 @@ window.addEventListener("DOMContentLoaded", () => {
     createOrderItems();
 
     // TODO: make it work with Promise instead
-    setTimeout(() => {
-      let orderItems = JSON.parse(getItems());
 
+    let orderItems;
+    setTimeout(() => {
+      orderItems = JSON.parse(getItems());
+    }, 150);
+
+    setTimeout(() => {
       generateReceipt(0, orderItems);
-    }, 300);
+    }, 150);
   });
 
   function submitOrder() {
@@ -315,9 +319,15 @@ window.addEventListener("DOMContentLoaded", () => {
   // Create the Order Items elements with their corresponding quantity
   createOrderItems();
 
+  let orderItems;
   setTimeout(() => {
-    generateReceipt(0, JSON.parse(getItems()));
-  }, 300);
+    orderItems = JSON.parse(getItems());
+  }, 150);
+
+  setTimeout(() => {
+    console.log(orderItems);
+    generateReceipt(0, orderItems);
+  }, 150);
 });
 
 // Increase or decrease the value of an element

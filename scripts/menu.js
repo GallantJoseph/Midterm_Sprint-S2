@@ -80,7 +80,9 @@ function addItem(id, price, name) {
 
     localStorage.setItem("order", JSON.stringify(orders));
   }
-  document.querySelector(`#button${id}`).innerHTML = `<button class="menubuttonClicked" id="button${id}">&#10003;</button>`;
+  document.querySelector(
+    `#button${id}`
+  ).innerHTML = `<button class="menubuttonClicked" id="button${id}">&#10003;</button>`;
   setTimeout(() => {
     document.querySelector(
       `#button${id}`
