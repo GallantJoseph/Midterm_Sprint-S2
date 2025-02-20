@@ -1,251 +1,261 @@
 @font-face {
-    font-family: "DotGothic16";
-    src: url("Fonts/DotGothic16-Regular.ttf");
+  font-family: "DotGothic16";
+  src: url("Fonts/DotGothic16-Regular.ttf");
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #pageContainer {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ccb7a7;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ccb7a7;
 }
 
 header {
-    position: relative;
-    height: 60vh;
+  position: relative;
+  height: 60vh;
 }
 
 header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 nav {
-    position: absolute;
-    bottom: 10%;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-    padding: 10px;
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  padding: 10px;
 }
 
 nav a {
-    margin: 50px;
-    padding: 8px;
-    background-color: beige;
-    border-radius: 12px;
-    border: 1px solid white;
-    color: #030303;
-    text-decoration: none;
-    font-size: 20pt;
-    transition: transform 0.3s ease;
+  margin: 50px;
+  padding: 8px;
+  background-color: beige;
+  border-radius: 12px;
+  border: 1px solid white;
+  color: #030303;
+  text-decoration: none;
+  font-size: 20pt;
+  transition: transform 0.3s ease;
 }
 
 nav a:hover {
-    background-color: rgba(245, 245, 220, 0.764);
-    color: #030303e6;
-    transform: scale(1.1);
+  background-color: rgba(245, 245, 220, 0.764);
+  color: #030303e6;
+  transform: scale(1.1);
 }
 .aboutUs {
-    background-color: rgba(245, 245, 220, 0.631);
-    border-radius: 8px;
-    border: 2px solid rgb(244, 244, 222);
-    padding: 20px;
-    margin: auto;
-    margin-top: 30px;
-    width: 700px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  background-color: rgba(245, 245, 220, 0.631);
+  border-radius: 8px;
+  border: 2px solid rgb(244, 244, 222);
+  padding: 20px;
+  margin: auto;
+  margin-top: 30px;
+  width: 700px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 .aboutUs h2 {
-    color: black;
-    text-align: center;
-    font-size: 24pt;
+  color: black;
+  text-align: center;
+  font-size: 24pt;
 }
 .aboutUs p {
-    color: black;
-    line-height: 1.7rem;
+  color: black;
+  line-height: 1.7rem;
 }
 
 .review-card {
-    border: 8px solid #654835;
-    background-color: rgba(245, 245, 220, 0.905);
-    padding: 10px;
-    margin: 15px;
-    border-radius: 8px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-    text-align: center;
-    max-width: 400px;
+  border: 8px solid #654835;
+  background-color: rgba(245, 245, 220, 0.905);
+  padding: 10px;
+  margin: 15px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  text-align: center;
+  max-width: 400px;
 }
 
 .review-card h3 {
-    font-size: 16pt;
-    margin-bottom: 10px;
+  font-size: 16pt;
+  margin-bottom: 10px;
 }
 
 .review-card p {
-    font-size: 14pt;
-    margin-bottom: 10px;
+  font-size: 14pt;
+  margin-bottom: 10px;
 }
 .review-card .star {
-    margin: auto;
-    color: rgb(5, 5, 5);
+  margin: auto;
+  color: rgb(5, 5, 5);
 }
 
 .menu-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin: 20px;
-    background-color: #654835;
-    color: white;
-    border: 2px solid rgb(216, 195, 179);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-    width: 250px;
-    padding: 15px;
-    text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 20px;
+  background-color: #654835;
+  color: white;
+  border: 2px solid rgb(216, 195, 179);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  width: 250px;
+  padding: 15px;
+  text-align: center;
 }
 
 .menu-item img {
-    border: 1px solid beige;
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
+  border: 1px solid beige;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .item-name {
-    color: white;
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: 10px;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 .item-price {
-    color: white;
-    font-size: 18px;
-    margin: 5px;
-    font-weight: bold;
+  color: white;
+  font-size: 18px;
+  margin: 5px;
+  font-weight: bold;
 }
 
 .item-description {
-    font-size: 14px;
-    color: white;
-    margin: 10px;
+  font-size: 14px;
+  color: white;
+  margin: 10px;
 }
 
 .menubutton {
-    margin: auto;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    background-color: #ccb7a7;
-    width: 100px;
-    color: black;
-    padding: 8px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: transfrom 0.3s ease;
-    text-decoration: none;
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: #ccb7a7;
+  width: 100px;
+  height: 40px;
+  color: #463123;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+  text-decoration: none;
 }
 
 .menubutton:hover {
-    transform: scale(1.1);
+  background-color: #463123;
+  color: #ccb7a7;
 }
+
 .menubuttonClicked {
-    margin: auto;
-    background-color: #5aab5f;
-    width: 100px;
-    color: black;
-    padding: 8px;
-    border: none;
-    border-radius: 8px;
-    font-size: 20px;
-    transition: transfrom 0.3s ease;
-    text-decoration: none;
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: #5aab5f;
+  width: 100px;
+  height: 40px;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: transfrom 0.3s ease;
+  text-decoration: none;
 }
 
 #statusText {
-    background-color: rgba(0, 0, 0, 50%);
-    padding-left: 16px;
+  background-color: rgba(0, 0, 0, 50%);
+  padding-left: 16px;
 }
 .success {
-    color: green;
+  color: green;
 }
 
 .fail {
-    color: red;
+  color: red;
 }
 
 form {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: 1fr 1fr;
-    padding: 24px;
-    background-color: rgba(0, 0, 0, 50%);
-    color: white;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 50%);
+  color: white;
 }
 
 form div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 #menu-section {
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: #ccb7a7;
+  display: grid;
+  grid-template-columns: 1fr;
+  background-color: #ccb7a7;
 }
 
 #order-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
 
 .menu-category {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .quantity-element {
-    display: grid;
-    justify-items: center;
-    grid-template-areas: "label label label";
-    gap: 8px;
+  display: grid;
+  justify-items: center;
+  grid-template-areas: "label label label";
+  gap: 8px;
 }
 
 .quantity-element label {
-    grid-area: label;
+  grid-area: label;
 }
 
 .quantity-element button {
-    width: fit-content;
-    font-weight: bold;
+  width: fit-content;
+  font-weight: bold;
 }
 
 .quantity-element input {
-    font-size: 2rem;
-    background-color: #654835;
-    text-align: center;
-    color: white;
-    width: 3rem;
-    border: 2px solid white;
-    border-radius: 10px;
+  font-size: 2rem;
+  background-color: #654835;
+  text-align: center;
+  color: white;
+  width: 3rem;
+  border: 2px solid white;
+  border-radius: 10px;
 }
 
 #order-receipt {
-    background-color: rgba(255, 255, 255, 50%);
-    border: 2px solid black;
+  background-color: rgba(255, 255, 255, 50%);
+  border: 2px solid black;
+}
+
+#menu-section h2 {
+  font-family: DotGothic16;
+  text-align: center;
 }
