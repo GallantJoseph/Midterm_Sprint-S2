@@ -5,6 +5,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: "Times New Roman", Times, serif;
 }
 
 #pageContainer {
@@ -44,7 +45,7 @@
   margin: 50px;
   padding: 8px;
   background-color: beige;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid white;
   color: #030303;
   text-decoration: none;
@@ -75,7 +76,7 @@
 .menuNav a {
   padding: 8px;
   float: left;
-  border-radius: 12px;
+  border-radius: 10px;
   text-decoration: none;
   font-size: 20pt;
 }
@@ -107,7 +108,7 @@
 }
 .aboutUs {
   background-color: rgba(245, 245, 220, 0.631);
-  border-radius: 8px;
+  border-radius: 10px;
   border: 2px solid rgb(244, 244, 222);
   padding: 20px;
   margin: auto;
@@ -203,7 +204,8 @@
   color: #463123;
   padding: 8px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
   font-size: 16px;
   transition: background-color 0.2s ease-out, color 0.2s ease-out;
   text-decoration: none;
@@ -223,7 +225,8 @@
   height: 40px;
   color: black;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
   font-size: 20px;
   transition: transfrom 0.3s ease;
   text-decoration: none;
@@ -246,8 +249,11 @@ form {
   gap: 16px;
   grid-template-columns: 1fr 1fr;
   padding: 24px;
-  background-color: rgba(0, 0, 0, 50%);
+  background-color: #654835;
   color: white;
+  border: 2px solid rgb(216, 195, 179);
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
 form div {
@@ -264,7 +270,7 @@ form div {
 #order-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 24px;
 }
 
 .menu-category {
@@ -299,8 +305,11 @@ form div {
 }
 
 #order-receipt {
+  padding: 24px;
   background-color: rgba(255, 255, 255, 50%);
-  border: 2px solid black;
+  border: 2px solid rgb(216, 195, 179);
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
 #menu-section h2,
