@@ -20,11 +20,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document.querySelector("#updateOrderBtn").addEventListener("click", () => {
     // Update the quantities, clear the order elements and reload the updated values
+
     updateItems();
 
     document.querySelector("#order-details").innerHTML = "";
     menuItems = [];
     createOrderItems();
+
+    // TODO: make it work with Promise instead
+    setTimeout(() => {
+      console.log(calculateSubtotal());
+    }, 150);
   });
 
   function submitOrder() {
@@ -251,6 +257,26 @@ window.addEventListener("DOMContentLoaded", () => {
 
       orderElement.appendChild(menuElement);
     });
+  }
+
+  // Get the item price given its itemId
+  function getItemPrice(itemId) {
+    console.log(menuItems);
+    let itemPrice = menuItems.filter((item) => item.itemId === itemId)[0]
+      .itemPrice;
+
+    return itemPrice;
+  }
+
+  function calculateSubtotal() {
+    let orderItems = JSON.parse(getItems());
+    let subTotal = 0;
+
+    orderItems.forEach((orderItem) => {
+      subTotal += getItemPrice(orderItem.itemId) * orderItem.itemQuantity;
+    });
+
+    return subTotal;
   }
 
   // Create the Order Items elements with their corresponding quantity
