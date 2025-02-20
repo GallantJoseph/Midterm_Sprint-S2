@@ -280,7 +280,7 @@ function getItems() {
   let orderStorage = localStorage.getItem("order");
 
   if (orderStorage === null) {
-    return [];
+    return "[]";
   } else {
     return orderStorage;
   }
