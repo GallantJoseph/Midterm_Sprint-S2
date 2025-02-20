@@ -275,6 +275,21 @@ body {
   text-decoration: none;
 }
 
+#updateOrderBtn {
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  padding: 16px;
+  background-color: #463123;
+  color: #ccb7a7;
+  border: 2px solid #463123;
+  transition: border-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+#updateOrderBtn:hover {
+  border: 2px solid #ccb7a7;
+}
+
 #statusText {
   background-color: rgba(0, 0, 0, 50%);
   padding-left: 16px;
@@ -344,6 +359,7 @@ form div {
   width: 3rem;
   border: 2px solid white;
   border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
 #order-receipt {
