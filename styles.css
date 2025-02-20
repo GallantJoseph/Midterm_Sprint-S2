@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "DotGothic16";
+  src: url("Fonts/DotGothic16-Regular.ttf");
+}
+
 * {
   box-sizing: border-box;
 }
@@ -193,24 +198,29 @@
   margin-bottom: 8px;
   background-color: #ccb7a7;
   width: 100px;
-  color: black;
+  height: 40px;
+  color: #463123;
   padding: 8px;
   border: none;
   border-radius: 8px;
   font-size: 16px;
-  transition: transfrom 0.3s ease;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
   text-decoration: none;
 }
 
 .menubutton:hover {
-  transform: scale(1.1);
+  background-color: #463123;
+  color: #ccb7a7;
 }
+
 .menubuttonClicked {
   margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
   background-color: #5aab5f;
   width: 100px;
+  height: 40px;
   color: black;
-  padding: 8px;
   border: none;
   border-radius: 8px;
   font-size: 20px;
@@ -290,4 +300,9 @@ form div {
 #order-receipt {
   background-color: rgba(255, 255, 255, 50%);
   border: 2px solid black;
+}
+
+#menu-section h2 {
+  font-family: DotGothic16;
+  text-align: center;
 }

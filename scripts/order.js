@@ -6,6 +6,14 @@
   Dates:  February 17, 2025 - 
 */
 
+// "order" localStorage contains values in the following format:
+// [{
+//   itemId: id,
+//   itemQuantity: quantity,
+//   itemPrice: price,
+//   itemName: name,
+// }]
+
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#orderBtn").addEventListener("click", () => {
     // Submit an order and display an appropriate message
@@ -29,8 +37,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // TODO: make it work with Promise instead
     setTimeout(() => {
-      console.log(calculateSubtotal());
-    }, 150);
+      let orderItems = JSON.parse(getItems());
+
+      generateReceipt(0, orderItems);
+    }, 300);
   });
 
   function submitOrder() {
@@ -106,17 +116,35 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 2000);
   }
 
-  function receiptValues(discountAmount = 0, ...cartItemsPrice) {
+  // Each order is in the following format:
+  // {
+  //   itemId: id,
+  //   itemQuantity: quantity,
+  //   itemPrice: price,
+  //   itemName: name,
+  // }
+  function generateReceipt(discountAmount = 0, orders) {
     // Have a list of valid discounts with corresponding discount amounts in decimal format
     // e.g. "Python" = 20% off = 0.2
 
-    let allItemsPrice = 0;
-    cartItemsPrice.forEach((price) => {
-      allItemsPrice += price;
+    let subTotal = 0.0;
+
+    let receiptHTML = "";
+    orders.forEach((order) => {
+      let id = order.itemId;
+      let quantity = parseInt(order.itemQuantity);
+      let price = parseFloat(order.itemPrice);
+      let name = order.itemName;
+
+      let cost = quantity * price;
+      subTotal += cost;
+
+      // Build each line to be displayed, or create an array of lines
+      receiptHTML += `Name:${name}, Price:${price}, Quantity:${quantity}, Cost:${cost}<br />`;
     });
 
-    let hst = allItemsPrice * 0.15;
-    let total = allItemsPrice + hst;
+    let hst = subTotal * 0.15;
+    let total = subTotal + hst;
 
     let discount = 0;
     let discountedTotal = 0;
@@ -125,7 +153,11 @@ window.addEventListener("DOMContentLoaded", () => {
       discountedTotal = total - discountAmount;
     }
 
-    return [allItemsPrice, hst, total, discount, discountedTotal];
+    receiptHTML += `Subtotal: ${subTotal}<br />HST: ${hst}<br />Total:${total}`;
+
+    document.querySelector("#order-receipt").innerHTML = receiptHTML;
+
+    //return [subTotal, hst, total, discount, discountedTotal];
     // since i dont really know how the receipt should look,
     // i calculate all the values and return them in an array
     // so its easy to implement elsewhere.
@@ -175,6 +207,7 @@ window.addEventListener("DOMContentLoaded", () => {
             response
               .json()
               .then((data) => {
+                // return data
                 data.forEach((element) => {
                   if (itemSet.has(element.itemId)) {
                     let menuItem = new MenuItem(
@@ -281,6 +314,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Create the Order Items elements with their corresponding quantity
   createOrderItems();
+
+  setTimeout(() => {
+    generateReceipt(0, JSON.parse(getItems()));
+  }, 300);
 });
 
 // Increase or decrease the value of an element
@@ -316,7 +353,6 @@ function removeOrderItem(itemId) {
       console.log(response);
 
       // TODO: Fix to show an empty cart message
-      console.dir(document.querySelector("#order-details"));
       //showEmptyCartMessage();
     })
     .catch((response) => {
@@ -362,11 +398,15 @@ function updateItems() {
       let quantity = parseInt(
         element.querySelector(`#quantityTextBox${itemId}`).value
       );
+      let price = parseFloat(
+        element.querySelector(".item-price").innerText.slice(1)
+      );
+      let name = element.querySelector(".item-name").innerText;
 
       // Only add the element if the quantity is over 0
       if (quantity > 0) {
         // Update the element with the corresponding itemId and itemQuantity in the "order" localStorage key
-        orderStorage.push(orderItem(itemId, quantity));
+        orderStorage.push(orderItem(itemId, quantity, price, name));
       }
 
       localStorage.setItem("order", JSON.stringify(orderStorage));
@@ -376,6 +416,11 @@ function updateItems() {
   }
 }
 
-function orderItem(id, quantity) {
-  return { itemId: id, itemQuantity: quantity };
+function orderItem(id, quantity, price, name) {
+  return {
+    itemId: id,
+    itemQuantity: quantity,
+    itemPrice: price,
+    itemName: name,
+  };
 }
