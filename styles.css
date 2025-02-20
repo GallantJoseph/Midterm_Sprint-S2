@@ -87,7 +87,7 @@
   position: relative;
 }
 
-.cart-bubble {
+#cart-bubble {
   position: absolute;
   top: -16px;
   right: -16px;
@@ -303,7 +303,8 @@ form div {
   border: 2px solid black;
 }
 
-#menu-section h2 {
+#menu-section h2,
+main h2 {
   font-family: DotGothic16;
   text-align: center;
 }

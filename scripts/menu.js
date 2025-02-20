@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
                              <p class="item-description">${element.itemDesc}</p>
                              <h4 class="item-price">\$${element.itemPrice}</h4>
-                             <div id="button${element.itemId}"><button class="menubutton" onclick="addItem(${element.itemId})">Add to Cart</button></div>`;
+                             <div id="button${element.itemId}"><button class="menubutton" onclick="addItem(${element.itemId}, ${element.itemPrice}, '${element.itemName}')">Add to Cart</button></div>`;
 
       menuElement.innerHTML += menuElementHTML;
 
@@ -48,13 +48,13 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   generateMenu();
+  updateCartBubble();
 });
 
 // Add an Item to localStorage order key
 
 function addItem(id, price, name) {
   let orderStorage = localStorage.getItem("order");
-
   let orderObj = {
     itemId: id,
     itemQuantity: 1,
@@ -84,6 +84,29 @@ function addItem(id, price, name) {
   }
   document.querySelector(`#button${id}`).innerHTML = `<button class="menubuttonClicked" id="button${id}">&#10003;</button>`;
   setTimeout(() => {
-    document.querySelector(`#button${id}`).innerHTML = `<button class="menubutton" onclick="addItem(${id})">Add to Cart</button>`;
+    document.querySelector(
+      `#button${id}`
+    ).innerHTML = `<button class="menubutton" onclick="addItem(${id}, ${price}, '${name}')">Add to Cart</button>`;
   }, 2000);
+
+  updateCartBubble();
+}
+
+function updateCartBubble() {
+  let storage = localStorage.getItem("order");
+  let orders = JSON.parse(storage);
+  let cartBubble = document.getElementById("cart-bubble");
+
+  if (orders.length === 0) {
+    cartBubble.style.visibility = "hidden";
+    return;
+  } else {
+    cartBubble.style.visibility = "visible";
+  }
+
+  let totalItems = 0;
+  for (let i = 0; i < orders.length; i++) {
+    totalItems += orders[i].itemQuantity;
+  }
+  cartBubble.textContent = totalItems;
 }
