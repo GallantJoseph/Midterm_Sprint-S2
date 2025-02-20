@@ -11,20 +11,20 @@
   margin: 0 auto;
   padding: 20px;
   background-color: #ccb7a7;
+  position: relative;
 }
-
-header {
+.mainHeader {
   position: relative;
   height: 60vh;
 }
 
-header img {
+.mainHeader img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-nav {
+.mainNav {
   position: absolute;
   bottom: 10%;
   left: 0;
@@ -35,7 +35,7 @@ nav {
   padding: 10px;
 }
 
-nav a {
+.mainNav a {
   margin: 50px;
   padding: 8px;
   background-color: beige;
@@ -47,10 +47,57 @@ nav a {
   transition: transform 0.3s ease;
 }
 
-nav a:hover {
+.mainNav a:hover {
   background-color: rgba(245, 245, 220, 0.764);
   color: #030303e6;
+}
+.menuNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #654835;
+  height: 100px;
+  text-align: center;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 50px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure it stays above other content */
+}
+
+.menuNav a {
+  padding: 8px;
+  float: left;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 20pt;
+}
+.menuNav a:hover {
   transform: scale(1.1);
+}
+
+.cart-container {
+  position: relative;
+}
+
+.cart-bubble {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(10, 10, 10);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  /* Change this to visible to view and hidden to make invisable if items less then 1  */
+  visibility: visible;
 }
 .aboutUs {
   background-color: rgba(245, 245, 220, 0.631);
