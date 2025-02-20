@@ -35,8 +35,8 @@ window.addEventListener("DOMContentLoaded", () => {
       menuElement.appendChild(image);
 
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
-                             <p class = "item-description">${element.itemDesc}</p>
-                             <h4 class = "item-price">\$${element.itemPrice}</h4>
+                             <p class="item-description">${element.itemDesc}</p>
+                             <h4 class="item-price">\$${element.itemPrice}</h4>
                              <button class="menubutton" onclick="addItem(${element.itemId})">Add to Cart</button>`;
 
       menuElement.innerHTML += menuElementHTML;

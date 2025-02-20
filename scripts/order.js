@@ -138,30 +138,45 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let menuItems = [];
 
-  // Create an array of all the MenuItem objects from a JSON file
+  // Create an array of the required MenuItem objects from a JSON file
   function createMenuItems() {
     let menuPromise = fetch("../data/menu.json");
 
     menuPromise
       .then((response) => {
         if (response.status === 200) {
-          response
-            .json()
-            .then((data) => {
-              data.forEach((element) => {
-                let menuItem = new MenuItem(
-                  element.itemId,
-                  element.itemCategory,
-                  element.itemName,
-                  element.itemDesc,
-                  element.itemPrice,
-                  element.itemImage
-                );
+          // Get the current data from the order storage
+          let orderItems = JSON.parse(getItems());
 
-                menuItems.push(menuItem);
-              });
-            })
-            .catch((reject) => alert(reject));
+          if (orderItems.length >= 1) {
+            let itemSet = new Set();
+
+            orderItems.forEach((orderItem) => {
+              itemSet.add(orderItem.itemId);
+            });
+
+            response
+              .json()
+              .then((data) => {
+                data.forEach((element) => {
+                  if (itemSet.has(element.itemId)) {
+                    let menuItem = new MenuItem(
+                      element.itemId,
+                      element.itemCategory,
+                      element.itemName,
+                      element.itemDesc,
+                      element.itemPrice,
+                      element.itemImage
+                    );
+
+                    menuItems.push(menuItem);
+                  }
+                });
+              })
+              .catch((reject) => alert(reject));
+          } else {
+            // TODO: Display something when the cart is empty
+          }
         }
       })
       .catch((reject) => alert(reject));
@@ -172,11 +187,13 @@ window.addEventListener("DOMContentLoaded", () => {
   // Display the order
   function displayOrder() {
     let orderElement = document.querySelector("#order-details");
+    let orderItems = JSON.parse(getItems());
 
     menuItems.forEach((element) => {
       let menuElement = document.createElement("div");
 
       menuElement.className = "menu-item";
+      menuElement.id = `menu-item-${element.itemId}`;
 
       let image = document.createElement("img");
       image.src = element.itemImage;
@@ -184,16 +201,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
       menuElement.appendChild(image);
 
+      // Get the quantity of the selected item
+      let currItemQuantity = orderItems.filter(
+        (orderItem) => orderItem.itemId === element.itemId
+      )[0].itemQuantity;
+
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
-                             <p class = "item-description">${element.itemDesc}</p>
-                             <h4 class = "item-price">\$${element.itemPrice}</h4>
+                             <p class="item-description">${element.itemDesc}</p>
+                             <h4 class="item-price">\$${element.itemPrice}</h4>
                              <div class="quantity-element">
                              <label for="quantityTextBox${element.itemId}">Quantity</label>
-                             <button class="menubutton">-</button>
-                             <input type="text" name="quantityTextBox${element.itemId}" id="quantityTextBox${element.itemId}" value="1" />
-                             <button class="menubutton">+</button>
+                             <button class="menubutton" onclick="changeQuantity('quantityTextBox${element.itemId}',-1)">-</button>
+                             <input type="text" name="quantityTextBox${element.itemId}" id="quantityTextBox${element.itemId}" value="${currItemQuantity}" />
+                             <button class="menubutton" onclick="changeQuantity('quantityTextBox${element.itemId}',1)">+</button>
                              </div>
-                             <button class="menubutton" onclick="updateItem(${element.itemId},0)">Remove</button>`;
+                             <button class="menubutton" onclick="removeOrderItem(${element.itemId})">Remove</button>`;
 
       menuElement.innerHTML += menuElementHTML;
 
@@ -206,5 +228,82 @@ window.addEventListener("DOMContentLoaded", () => {
   // // TODO: Find a way to only execute code after the createMenuItems is done
   setTimeout(() => {
     displayOrder();
-  }, 500);
+  }, 150);
 });
+
+// Decreases or increases the value inside an element
+function changeQuantity(elementId, value) {
+  let element = document.querySelector(`#${elementId}`);
+
+  let elementValue = element.value;
+
+  if (!isNaN(elementValue)) {
+    elementValue = parseInt(elementValue);
+
+    // Prevent from going under 0
+    if (elementValue + value >= 0) {
+      element.value = elementValue + value;
+    }
+  }
+}
+
+// Remove an order item based on the given itemId from the "order" localStorage key.
+function removeOrderItem(itemId) {
+  let removeItemPromise = new Promise((resolve, reject) => {
+    try {
+      removeItem(itemId);
+
+      resolve("Item Removed From the Order");
+    } catch {
+      reject("Error While Removing the Item");
+    }
+  }).then(() => {
+    document.querySelector(`#menu-item-${itemId}`).remove();
+    updateItems();
+  });
+}
+
+function removeItem(id) {
+  let orderStorage = localStorage.getItem("order");
+
+  if (orderStorage !== null) {
+    let orders = JSON.parse(orderStorage);
+
+    orders = orders.filter((order) => order.itemId !== id);
+
+    localStorage.setItem("order", JSON.stringify(orders));
+  }
+}
+
+// Get the items stored in the "order" localStorage key
+function getItems() {
+  let orderStorage = localStorage.getItem("order");
+
+  if (orderStorage === null) {
+    return [];
+  } else {
+    return orderStorage;
+  }
+}
+
+function updateItems() {
+  let orderDetails = document.querySelector("#order-details").childNodes;
+
+  let orderStorage = [];
+
+  orderDetails.forEach((element) => {
+    let itemId = parseInt(element.id.match(/\d+$/));
+    let quantity = parseInt(
+      element.querySelector(`#quantityTextBox${itemId}`).value
+    );
+
+    // Update the element with the corresponding itemId and itemQuantity in the "order" localStorage key
+    orderStorage.push(orderItem(itemId, quantity));
+  });
+
+  localStorage.setItem("order", JSON.stringify(orderStorage));
+}
+
+function orderItem(id, quantity) {
+  return { itemId: id, itemQuantity: quantity };
+}
