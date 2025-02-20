@@ -8,13 +8,23 @@
 
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#orderBtn").addEventListener("click", () => {
+    // Submit an order and display an appropriate message
     submitOrder()
-      .then((resolve) => {
-        displayStatus(resolve, "success");
+      .then((response) => {
+        displayStatus(response, "success");
       })
-      .catch((reject) => {
-        displayStatus(reject, "fail");
+      .catch((response) => {
+        displayStatus(response, "fail");
       });
+  });
+
+  document.querySelector("#updateOrderBtn").addEventListener("click", () => {
+    // Update the quantities, clear the order elements and reload the updated values
+    updateItems();
+
+    document.querySelector("#order-details").innerHTML = "";
+    menuItems = [];
+    createOrderItems();
   });
 
   function submitOrder() {
@@ -138,8 +148,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
   let menuItems = [];
 
-  // Create an array of the required MenuItem objects from a JSON file
-  function createMenuItems() {
+  // Create an array of the required MenuItem objects from a JSON file, and then call
+  // the displayOrder function to generate every element on the page.
+  function createOrderItems() {
     let menuPromise = fetch("../data/menu.json");
 
     menuPromise
@@ -172,10 +183,13 @@ window.addEventListener("DOMContentLoaded", () => {
                     menuItems.push(menuItem);
                   }
                 });
+
+                // Generate the order elements
+                displayOrder();
               })
               .catch((reject) => alert(reject));
           } else {
-            // TODO: Display something when the cart is empty
+            showEmptyCartMessage();
           }
         }
       })
@@ -184,7 +198,23 @@ window.addEventListener("DOMContentLoaded", () => {
     return menuPromise;
   }
 
-  // Display the order
+  function showEmptyCartMessage() {
+    let orderElement = document.querySelector("#order-details");
+
+    let menuElement = document.createElement("div");
+
+    menuElement.className = "menu-item";
+    menuElement.innerHTML = `<p>Your Cart is Empty</p>`;
+
+    // let image = document.createElement("img");
+    // image.src = element.itemImage;
+    // image.alt = element.itemName;
+
+    // menuElement.appendChild(image);
+    orderElement.appendChild(menuElement);
+  }
+
+  // Generate every order element to be displayed
   function displayOrder() {
     let orderElement = document.querySelector("#order-details");
     let orderItems = JSON.parse(getItems());
@@ -223,15 +253,11 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  createMenuItems();
-
-  // // TODO: Find a way to only execute code after the createMenuItems is done
-  setTimeout(() => {
-    displayOrder();
-  }, 150);
+  // Create the Order Items elements with their corresponding quantity
+  createOrderItems();
 });
 
-// Decreases or increases the value inside an element
+// Increase or decrease the value of an element
 function changeQuantity(elementId, value) {
   let element = document.querySelector(`#${elementId}`);
 
@@ -247,35 +273,45 @@ function changeQuantity(elementId, value) {
   }
 }
 
-// Remove an order item based on the given itemId from the "order" localStorage key.
+// Remove an order item from the "order" localStorage key, based on a given itemId
 function removeOrderItem(itemId) {
-  let removeItemPromise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     try {
-      removeItem(itemId);
+      removeOrderStorageItem(itemId);
 
-      resolve("Item Removed From the Order");
-    } catch {
-      reject("Error While Removing the Item");
+      resolve("Item Successfully Removed From the Order");
+    } catch (error) {
+      reject(`Error While Removing the Item: ${error.message}`);
     }
-  }).then(() => {
-    document.querySelector(`#menu-item-${itemId}`).remove();
-    updateItems();
-  });
+  })
+    .then((response) => {
+      document.querySelector(`#menu-item-${itemId}`).remove();
+      updateItems();
+      console.log(response);
+
+      // TODO: Fix to show an empty cart message
+      console.dir(document.querySelector("#order-details"));
+      //showEmptyCartMessage();
+    })
+    .catch((response) => {
+      alert(response);
+    });
 }
 
-function removeItem(id) {
+// Function to remove an item from the "order" localStorage key, given the itemId
+function removeOrderStorageItem(itemId) {
   let orderStorage = localStorage.getItem("order");
 
   if (orderStorage !== null) {
     let orders = JSON.parse(orderStorage);
 
-    orders = orders.filter((order) => order.itemId !== id);
+    orders = orders.filter((order) => order.itemId !== itemId);
 
     localStorage.setItem("order", JSON.stringify(orders));
   }
 }
 
-// Get the items stored in the "order" localStorage key
+// Get the items stored in the "order" localStorage key in a String format
 function getItems() {
   let orderStorage = localStorage.getItem("order");
 
@@ -286,22 +322,32 @@ function getItems() {
   }
 }
 
+// Update the "order" localStorage key data with the new quantities
 function updateItems() {
   let orderDetails = document.querySelector("#order-details").childNodes;
 
   let orderStorage = [];
 
-  orderDetails.forEach((element) => {
-    let itemId = parseInt(element.id.match(/\d+$/));
-    let quantity = parseInt(
-      element.querySelector(`#quantityTextBox${itemId}`).value
-    );
+  // TODO: Find a better way to handle when the order is empty
+  // If order-details contains no element, error on the quantityTextBox querySelector as it doesn't exist
+  try {
+    orderDetails.forEach((element) => {
+      let itemId = parseInt(element.id.match(/\d+$/));
+      let quantity = parseInt(
+        element.querySelector(`#quantityTextBox${itemId}`).value
+      );
 
-    // Update the element with the corresponding itemId and itemQuantity in the "order" localStorage key
-    orderStorage.push(orderItem(itemId, quantity));
-  });
+      // Only add the element if the quantity is over 0
+      if (quantity > 0) {
+        // Update the element with the corresponding itemId and itemQuantity in the "order" localStorage key
+        orderStorage.push(orderItem(itemId, quantity));
+      }
 
-  localStorage.setItem("order", JSON.stringify(orderStorage));
+      localStorage.setItem("order", JSON.stringify(orderStorage));
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function orderItem(id, quantity) {
