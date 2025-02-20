@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // TODO: make it work with Promise instead
     setTimeout(() => {
-      console.log(calculateSubtotal());
+      receiptValues();
     }, 150);
   });
 
@@ -175,6 +175,7 @@ window.addEventListener("DOMContentLoaded", () => {
             response
               .json()
               .then((data) => {
+                // return data
                 data.forEach((element) => {
                   if (itemSet.has(element.itemId)) {
                     let menuItem = new MenuItem(
@@ -316,7 +317,6 @@ function removeOrderItem(itemId) {
       console.log(response);
 
       // TODO: Fix to show an empty cart message
-      console.dir(document.querySelector("#order-details"));
       //showEmptyCartMessage();
     })
     .catch((response) => {
