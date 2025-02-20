@@ -37,7 +37,7 @@ window.addEventListener("DOMContentLoaded", () => {
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
                              <p class="item-description">${element.itemDesc}</p>
                              <h4 class="item-price">\$${element.itemPrice}</h4>
-                             <button class="menubutton" onclick="addItem(${element.itemId}, ${element.itemPrice}, '${element.itemName}')">Add to Cart</button>`;
+                             <div id="button${element.itemId}"><button class="menubutton" onclick="addItem(${element.itemId})">Add to Cart</button></div>`;
 
       menuElement.innerHTML += menuElementHTML;
 
@@ -82,4 +82,8 @@ function addItem(id, price, name) {
 
     localStorage.setItem("order", JSON.stringify(orders));
   }
+  document.querySelector(`#button${id}`).innerHTML = `<button class="menubuttonClicked" id="button${id}">&#10003;</button>`;
+  setTimeout(() => {
+    document.querySelector(`#button${id}`).innerHTML = `<button class="menubutton" onclick="addItem(${id})">Add to Cart</button>`;
+  }, 2000);
 }
