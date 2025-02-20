@@ -302,7 +302,8 @@ form div {
   border: 2px solid black;
 }
 
-#menu-section h2 {
+#menu-section h2,
+main h2 {
   font-family: DotGothic16;
   text-align: center;
 }
