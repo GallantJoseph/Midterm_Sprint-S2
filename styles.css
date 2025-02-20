@@ -7,16 +7,20 @@
   box-sizing: border-box;
   font-family: "Times New Roman", Times, serif;
 }
+body {
+  background-image: linear-gradient(to bottom right, #34251b, #654835);
+}
 
 #pageContainer {
   display: grid;
   grid-template-columns: 1fr;
+  border-radius: 8px;
   gap: 16px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ccb7a7;
+  background-color: #ccb7a7d8;
   position: relative;
 }
 .mainHeader {
@@ -27,6 +31,7 @@
 .mainHeader img {
   width: 100%;
   height: 100%;
+  border-radius: 8px;
   object-fit: cover;
 }
 
@@ -60,6 +65,7 @@
 .menuNav {
   display: flex;
   justify-content: space-between;
+  border-radius: 8px;
   align-items: center;
   background-color: #654835;
   border: 4px solid beige;
@@ -125,8 +131,42 @@
   color: black;
   line-height: 1.7rem;
 }
-
+.visitUs {
+  text-align: center;
+  background-color: rgba(245, 245, 220, 0.385);
+  border-radius: 8px;
+  border: 2px solid rgb(244, 244, 222);
+  padding: 20px;
+  margin: auto;
+  margin-top: 30px;
+  width: 700px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+.bold {
+  font-weight: 700;
+}
+.reviewBox {
+  justify-content: center;
+  margin: auto;
+  margin-top: 30px;
+  background-color: rgba(245, 245, 220, 0.631);
+  border-radius: 8px;
+  border: 2px solid rgb(244, 244, 222);
+  width: 700px;
+  height: 400px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+.reviewBox h2 {
+  font-size: 20pt;
+}
+#review-section {
+  display: flex;
+  margin: 30px;
+  justify-content: center;
+}
 .review-card {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
   border: 8px solid #654835;
   background-color: rgba(245, 245, 220, 0.905);
   padding: 10px;
@@ -150,12 +190,15 @@
   margin: auto;
   color: rgb(5, 5, 5);
 }
-
+.star {
+  font-size: 1.5em;
+}
 .menu-item {
   display: grid;
   grid-template-columns: 1fr;
   margin: 20px;
-  background-color: #654835;
+  /* background-color: #654835; */
+  background-image: linear-gradient(to bottom right, rgb(100, 82, 70), #583e2d);
   color: white;
   border: 2px solid rgb(216, 195, 179);
   border-radius: 15px;
@@ -264,7 +307,6 @@ form div {
 #menu-section {
   display: grid;
   grid-template-columns: 1fr;
-  background-color: #ccb7a7;
 }
 
 #order-section {
