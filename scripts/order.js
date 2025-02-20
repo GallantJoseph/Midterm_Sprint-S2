@@ -40,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
       let orderItems = JSON.parse(getItems());
 
       generateReceipt(0, orderItems);
-    }, 150);
+    }, 300);
   });
 
   function submitOrder() {
@@ -315,7 +315,9 @@ window.addEventListener("DOMContentLoaded", () => {
   // Create the Order Items elements with their corresponding quantity
   createOrderItems();
 
-  generateReceipt(0, JSON.parse(getItems()));
+  setTimeout(() => {
+    generateReceipt(0, JSON.parse(getItems()));
+  }, 300);
 });
 
 // Increase or decrease the value of an element
