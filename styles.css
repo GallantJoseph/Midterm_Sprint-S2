@@ -31,53 +31,22 @@ h2 {
   position: relative;
 }
 
-.mainHeader {
-  position: relative;
-  height: 60vh;
-}
-
 .mainHeader img {
   width: 100%;
-  height: 100%;
   border-radius: 8px;
-  object-fit: cover;
 }
-
+.onPage {
+  background-color: rgba(255, 255, 255, 0.199);
+  width: 150px;
+}
+.menuNav,
 .mainNav {
-  position: absolute;
-  bottom: 10%;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-  padding: 10px;
-}
-
-.mainNav a {
-  margin: 50px;
-  padding: 8px;
-  background-color: beige;
-  border-radius: 10px;
-  border: 1px solid white;
-  color: #030303;
-  text-decoration: none;
-  font-size: 20pt;
-  transition: transform 0.3s ease;
-}
-
-.mainNav a:hover {
-  background-color: rgba(245, 245, 220, 0.764);
-  color: #030303e6;
-}
-
-.menuNav {
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
   align-items: center;
-  background-color: #654835;
-  border: 4px solid beige;
+  background-image: linear-gradient(to bottom right, #34251b, #654835);
+  border: 4px solid rgba(0, 0, 0, 0.425);
   height: 100px;
   text-align: center;
   width: 100%;
@@ -88,7 +57,8 @@ h2 {
   z-index: 1000; /* Ensure it stays above other content */
 }
 
-.menuNav a {
+.menuNav a,
+.mainNav a {
   padding: 8px;
   float: left;
   border-radius: 10px;
@@ -96,7 +66,8 @@ h2 {
   font-size: 20pt;
 }
 
-.menuNav a:hover {
+.menuNav a:hover,
+.mainNav a:hover {
   transform: scale(1.1);
 }
 
@@ -108,15 +79,15 @@ h2 {
   position: absolute;
   top: -16px;
   right: -16px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(10, 10, 10);
+  background-color: rgba(252, 63, 63, 0.802);
+  color: white;
   border-radius: 50%;
   width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: 18pt;
   font-weight: bold;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
   /* Change this to visible to view and hidden to make invisable if items less then 1  */
@@ -444,6 +415,60 @@ form input[type="radio"] {
 main h2 {
   font-family: DotGothic16;
   text-align: center;
+}
+
+.socials {
+  margin: auto;
+  width: 65%;
+  background-color: rgba(245, 245, 220, 0.385);
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  text-align: center;
+  padding-top: 10px;
+  font-size: 20pt;
+  height: 300px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+.socials img {
+  display: inline-block;
+  padding-right: 30px;
+  transition: transform 0.3s ease;
+}
+.socials img:hover {
+  transform: scale(1.2);
+}
+
+footer {
+  padding: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  text-align: center;
+  background-color: rgba(245, 245, 220, 0.631);
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  border-radius: 8px;
+  color: black;
+  width: 100%;
+  height: 50px;
+  font-size: 18pt;
+}
+
+.backtotop:link,
+.backtotop:visited {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  margin: auto;
+  display: inline-block;
+  padding: 16px;
+  background-color: #463123;
+  color: #eae9e8;
+  border: 2px solid #463123;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16pt;
+  transition: transform 0.3s ease;
+}
+.backtotop:hover {
+  background-color: #463123f0;
+  color: #eae9e8;
+  transform: scale(1.1);
 }
 
 @media only screen and (min-width: 901px) and (max-width: 1200px) {
