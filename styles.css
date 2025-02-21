@@ -394,3 +394,19 @@ main h2 {
   font-family: DotGothic16;
   text-align: center;
 }
+
+@media only screen and (min-width: 901px) and (max-width: 1200px) {
+  .menu-category {
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  .menu-category {
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    margin: auto;
+  }
+}
