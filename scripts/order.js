@@ -47,6 +47,14 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 150);
   });
 
+  document.querySelector("#cashPaymentRdio").addEventListener("click", () => {
+    document.querySelector("#credit-card-info").style.visibility = "collapse";
+  });
+
+  document.querySelector("#creditPaymentRdio").addEventListener("click", () => {
+    document.querySelector("#credit-card-info").style.visibility = "initial";
+  });
+
   function submitOrder() {
     return new Promise((resolve, reject) => {
       try {

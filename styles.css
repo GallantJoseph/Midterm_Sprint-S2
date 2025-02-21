@@ -336,9 +336,54 @@ form {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
-form div {
+form #credit-card-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+form .form-element {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+form .radio-element {
+  display: grid;
+  align-items: center;
+  grid-template-areas:
+    "p p"
+    "radio-left radio-right";
+  border-top: 2px solid #ccb7a7;
+}
+
+.radio-element p {
+  grid-area: p;
+}
+
+#pickUpRdio,
+#cashPaymentRdio {
+  grid-area: radio-left;
+}
+
+#deliveryRdio,
+#creditPaymentRdio {
+  grid-area: radio-right;
+}
+
+form input[type="text"] {
+  font-size: 1em;
+  height: fit-content;
+  padding: 5px;
+  background-color: #ccb7a7;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+
+form input[type="radio"] {
+  margin-left: 8px;
 }
 
 #menu-section {

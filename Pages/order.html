@@ -29,7 +29,7 @@
         <h2>&gt;Your Details_</h2>
         <section id="order-section">
           <form>
-            <div>
+            <div class="form-element">
               <label for="userFNameTextBox">Full Name:</label
               ><input
                 type="text"
@@ -37,15 +37,15 @@
                 id="userFNameTextBox"
               />
             </div>
-            <div>
-              <label for="userPhoneTextBox">Phone Number:</label
+            <div class="form-element">
+              <label for="userPhoneTextBox">Phone:</label
               ><input
                 type="text"
                 name="userPhoneTextBox"
                 id="userPhoneTextBox"
               />
             </div>
-            <div>
+            <div class="form-element">
               <label for="userEmailTextBox">Email:</label
               ><input
                 type="text"
@@ -53,7 +53,7 @@
                 id="userEmailTextBox"
               />
             </div>
-            <div>
+            <div class="form-element">
               <label for="userAddressTextBox">Address:</label
               ><input
                 type="text"
@@ -61,8 +61,24 @@
                 id="userAddressTextBox"
               />
             </div>
-            Order Type
-            <div>
+            <div class="radio-element">
+              <p>Payment Method:</p>
+              <label
+                >Cash<input
+                  type="radio"
+                  name="paymentTypeRdio"
+                  id="cashPaymentRdio"
+                  checked="checked"
+              /></label>
+              <label
+                >Credit Card<input
+                  type="radio"
+                  name="paymentTypeRdio"
+                  id="creditPaymentRdio"
+              /></label>
+            </div>
+            <div class="radio-element">
+              <p>Order Type:</p>
               <label
                 >Pickup<input
                   type="radio"
@@ -76,6 +92,39 @@
                   name="orderTypeRdio"
                   id="deliveryRdio"
               /></label>
+            </div>
+
+            <div id="credit-card-info">
+              <div class="form-element">
+                <label for="creditCardNumberTextBox">Number:</label
+                ><input
+                  type="text"
+                  name="creditCardNumberTextBox"
+                  id="creditCardNumberTextBox"
+                  maxlength="16"
+                  size="16"
+                />
+              </div>
+              <div class="form-element">
+                <label for="expiryDateTextBox">Expiry Date:</label
+                ><input
+                  type="text"
+                  name="expiryDateTextBox"
+                  id="expiryDateTextBox"
+                  maxlength="5"
+                  size="5"
+                />
+              </div>
+              <div class="form-element">
+                <label for="csvCodeTextBox">CSV Code:</label
+                ><input
+                  type="text"
+                  name="csvCodeTextBox"
+                  id="csvCodeTextBox"
+                  maxlength="4"
+                  size="4"
+                />
+              </div>
             </div>
             <input
               type="button"
