@@ -311,7 +311,8 @@ form #credit-card-info {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  visibility: collapse; /* Default value */
+  opacity: 0; /* Default value */
+  transition: opacity 100ms ease-in-out;
 }
 
 form .form-element {

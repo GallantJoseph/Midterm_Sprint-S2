@@ -45,14 +45,16 @@ window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       generateReceipt(0, orderItems);
     }, 150);
+
+    updateCartBubble();
   });
 
   document.querySelector("#cashPaymentRdio").addEventListener("click", () => {
-    document.querySelector("#credit-card-info").style.visibility = "collapse";
+    document.querySelector("#credit-card-info").style.opacity = "0";
   });
 
   document.querySelector("#creditPaymentRdio").addEventListener("click", () => {
-    document.querySelector("#credit-card-info").style.visibility = "initial";
+    document.querySelector("#credit-card-info").style.opacity = "1";
   });
 
   function submitOrder() {
@@ -336,6 +338,8 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log(orderItems);
     generateReceipt(0, orderItems);
   }, 150);
+
+  updateCartBubble();
 });
 
 // Increase or decrease the value of an element
@@ -368,7 +372,8 @@ function removeOrderItem(itemId) {
     .then((response) => {
       document.querySelector(`#menu-item-${itemId}`).remove();
       updateItems();
-      console.log(response);
+
+      updateCartBubble();
 
       // TODO: Fix to show an empty cart message
       //showEmptyCartMessage();
@@ -441,4 +446,23 @@ function orderItem(id, quantity, price, name) {
     itemPrice: price,
     itemName: name,
   };
+}
+
+function updateCartBubble() {
+  let storage = localStorage.getItem("order");
+  let orders = JSON.parse(storage);
+  let cartBubble = document.getElementById("cart-bubble");
+
+  if (orders.length === 0) {
+    cartBubble.style.visibility = "hidden";
+    return;
+  } else {
+    cartBubble.style.visibility = "visible";
+  }
+
+  let totalItems = 0;
+  for (let i = 0; i < orders.length; i++) {
+    totalItems += orders[i].itemQuantity;
+  }
+  cartBubble.textContent = totalItems;
 }
