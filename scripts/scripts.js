@@ -73,4 +73,34 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   generateReviews();
+  updateCartBubble();
 });
+
+function updateCartBubble() {
+  let orders = JSON.parse(getItems());
+  let cartBubble = document.getElementById("cart-bubble");
+
+  if (orders.length === 0) {
+    cartBubble.style.visibility = "hidden";
+    return;
+  } else {
+    cartBubble.style.visibility = "visible";
+  }
+
+  let totalItems = 0;
+  for (let i = 0; i < orders.length; i++) {
+    totalItems += orders[i].itemQuantity;
+  }
+  cartBubble.textContent = totalItems;
+}
+
+// Get the items stored in the "order" localStorage key in a String format
+function getItems() {
+  let orderStorage = localStorage.getItem("order");
+
+  if (orderStorage === null) {
+    return "[]";
+  } else {
+    return orderStorage;
+  }
+}

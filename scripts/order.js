@@ -459,8 +459,7 @@ function showEmptyCartMessage() {
 }
 
 function updateCartBubble() {
-  let storage = localStorage.getItem("order");
-  let orders = JSON.parse(storage);
+  let orders = JSON.parse(getItems());
   let cartBubble = document.getElementById("cart-bubble");
 
   if (orders.length === 0) {

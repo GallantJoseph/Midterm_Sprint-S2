@@ -90,8 +90,7 @@ function addItem(id, price, name) {
 }
 
 function updateCartBubble() {
-  let storage = localStorage.getItem("order");
-  let orders = JSON.parse(storage);
+  let orders = JSON.parse(getItems());
   let cartBubble = document.getElementById("cart-bubble");
 
   if (orders.length === 0) {
@@ -106,4 +105,15 @@ function updateCartBubble() {
     totalItems += orders[i].itemQuantity;
   }
   cartBubble.textContent = totalItems;
+}
+
+// Get the items stored in the "order" localStorage key in a String format
+function getItems() {
+  let orderStorage = localStorage.getItem("order");
+
+  if (orderStorage === null) {
+    return "[]";
+  } else {
+    return orderStorage;
+  }
 }
