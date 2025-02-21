@@ -259,11 +259,6 @@ window.addEventListener("DOMContentLoaded", () => {
     menuElement.className = "menu-item";
     menuElement.innerHTML = `<p>Your Cart is Empty</p>`;
 
-    // let image = document.createElement("img");
-    // image.src = element.itemImage;
-    // image.alt = element.itemName;
-
-    // menuElement.appendChild(image);
     orderElement.appendChild(menuElement);
   }
 
@@ -371,12 +366,15 @@ function removeOrderItem(itemId) {
   })
     .then((response) => {
       document.querySelector(`#menu-item-${itemId}`).remove();
-      updateItems();
 
       updateCartBubble();
 
-      // TODO: Fix to show an empty cart message
-      //showEmptyCartMessage();
+      // If the order still contains items, update order item elements, otherwise, show an empty cart
+      if (getItems() !== "[]") {
+        updateItems();
+      } else {
+        showEmptyCartMessage();
+      }
     })
     .catch((response) => {
       alert(response);
@@ -415,6 +413,7 @@ function updateItems() {
 
   // TODO: Find a better way to handle when the order is empty
   // If order-details contains no element, error on the quantityTextBox querySelector as it doesn't exist
+  console.dir(orderDetails);
   try {
     orderDetails.forEach((element) => {
       let itemId = parseInt(element.id.match(/\d+$/));
@@ -446,6 +445,17 @@ function orderItem(id, quantity, price, name) {
     itemPrice: price,
     itemName: name,
   };
+}
+
+function showEmptyCartMessage() {
+  let orderElement = document.querySelector("#order-details");
+
+  let menuElement = document.createElement("div");
+
+  menuElement.className = "menu-item";
+  menuElement.innerHTML = `<p>Your Cart is Empty</p>`;
+
+  orderElement.appendChild(menuElement);
 }
 
 function updateCartBubble() {
