@@ -489,6 +489,23 @@ footer {
   transform: scale(1.1);
 }
 
+table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.centertext {
+  text-align: center;
+}
+
+.righttable {
+  text-align: right;
+}
+
+.foot {
+  border-top: none;
+}
+
 @media only screen and (min-width: 901px) and (max-width: 1200px) {
   .menu-category {
     grid-template-columns: repeat(3, 1fr);

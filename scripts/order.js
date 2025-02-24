@@ -107,10 +107,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     // Validate Order Type
-    if (
-      !document.querySelector("#pickUpRdio").checked &&
-      !document.querySelector("#deliveryRdio").checked
-    ) {
+    if (!document.querySelector("#pickUpRdio").checked && !document.querySelector("#deliveryRdio").checked) {
       error += "Select an Order Type (Pickup or Delivery)<br />";
     }
 
@@ -141,9 +138,11 @@ window.addEventListener("DOMContentLoaded", () => {
     // Have a list of valid discounts with corresponding discount amounts in decimal format
     // e.g. "Python" = 20% off = 0.2
 
-    let subTotal = 0.0;
+    let subtotal = 0.0;
 
-    let receiptHTML = "";
+    let receiptHTML = `
+    <table>
+      <th colspan="2" class="centertext">-------------CODE BREW CAF&Eacute;-------------</th>`;
     orders.forEach((order) => {
       let id = order.itemId;
       let quantity = parseInt(order.itemQuantity);
@@ -151,23 +150,77 @@ window.addEventListener("DOMContentLoaded", () => {
       let name = order.itemName;
 
       let cost = quantity * price;
-      subTotal += cost;
+      subtotal += cost;
 
       // Build each line to be displayed, or create an array of lines
-      receiptHTML += `Name:${name}, Price:${price}, Quantity:${quantity}, Cost:${cost}<br />`;
+      receiptHTML += `
+      <tr>
+        <td>${quantity}x ${name.toUpperCase()}</td>
+        <td class="righttable">$${price}</td>
+      </tr>
+      `;
     });
 
-    let hst = subTotal * 0.15;
-    let total = subTotal + hst;
+    let hst = subtotal * 0.15;
+    let total = subtotal + hst;
 
     let discount = 0;
     let discountedTotal = 0;
+    let discountHTML = ``;
     if (discountAmount !== 0) {
       discount = total * discountAmount;
       discountedTotal = total - discountAmount;
+      discountHTML = `
+      
+      `;
     }
 
-    receiptHTML += `Subtotal: ${subTotal}<br />HST: ${hst}<br />Total:${total}`;
+    receiptHTML += `
+      <tr>
+        <td></td>
+        <td class="righttable">------------</td>
+      </tr>
+
+      <tr>
+        <td>SUBTOTAL</td>
+        <td class="righttable">$${subtotal.toFixed(2)}</td>
+      </tr>
+
+      <tr>
+        <td>HST</td>
+        <td class="righttable">$${hst.toFixed(2)}</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td class="righttable">------------</td>
+      </tr>
+
+      <tr>
+        <td>TOTAL</td>
+        <td class="righttable">$${total.toFixed(2)}</td>
+      </tr>
+
+      <tr>
+        <td>CODE "XXXXXXXX"</td>
+        <td class="righttable">-$###.##</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td class="righttable">=======</td>
+      </tr>
+
+      <tr>
+        <td>NEW TOTAL</td>
+        <td class="righttable">$###.##</td>
+      </tr>
+
+      <tr>
+        <td colspan="2" class="foot">------------------------------------------------------</td>
+      </tr>
+    </table>
+    `;
 
     document.querySelector("#order-receipt").innerHTML = receiptHTML;
 
@@ -181,14 +234,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Show the Current Order Section
   class MenuItem {
-    constructor(
-      itemId,
-      itemCategory,
-      itemName,
-      itemDesc,
-      itemPrice,
-      itemImage
-    ) {
+    constructor(itemId, itemCategory, itemName, itemDesc, itemPrice, itemImage) {
       this.itemId = itemId;
       this.itemCategory = itemCategory;
       this.itemName = itemName;
@@ -280,9 +326,7 @@ window.addEventListener("DOMContentLoaded", () => {
       menuElement.appendChild(image);
 
       // Get the quantity of the selected item
-      let currItemQuantity = orderItems.filter(
-        (orderItem) => orderItem.itemId === element.itemId
-      )[0].itemQuantity;
+      let currItemQuantity = orderItems.filter((orderItem) => orderItem.itemId === element.itemId)[0].itemQuantity;
 
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
                              <h4 class="item-price">\$${element.itemPrice}</h4>
@@ -303,8 +347,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Get the item price given its itemId
   function getItemPrice(itemId) {
     console.log(menuItems);
-    let itemPrice = menuItems.filter((item) => item.itemId === itemId)[0]
-      .itemPrice;
+    let itemPrice = menuItems.filter((item) => item.itemId === itemId)[0].itemPrice;
 
     return itemPrice;
   }
@@ -415,12 +458,8 @@ function updateItems() {
   try {
     orderDetails.forEach((element) => {
       let itemId = parseInt(element.id.match(/\d+$/));
-      let quantity = parseInt(
-        element.querySelector(`#quantityTextBox${itemId}`).value
-      );
-      let price = parseFloat(
-        element.querySelector(".item-price").innerText.slice(1)
-      );
+      let quantity = parseInt(element.querySelector(`#quantityTextBox${itemId}`).value);
+      let price = parseFloat(element.querySelector(".item-price").innerText.slice(1));
       let name = element.querySelector(".item-name").innerText;
 
       // Only add the element if the quantity is over 0
