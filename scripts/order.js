@@ -256,7 +256,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let menuElement = document.createElement("div");
 
-    menuElement.className = "menu-item";
+    menuElement.className = "order-item";
     menuElement.innerHTML = `<p>Your Cart is Empty</p>`;
 
     orderElement.appendChild(menuElement);
@@ -270,8 +270,8 @@ window.addEventListener("DOMContentLoaded", () => {
     menuItems.forEach((element) => {
       let menuElement = document.createElement("div");
 
-      menuElement.className = "menu-item";
-      menuElement.id = `menu-item-${element.itemId}`;
+      menuElement.className = "order-item";
+      menuElement.id = `order-item-${element.itemId}`;
 
       let image = document.createElement("img");
       image.src = element.itemImage;
@@ -285,7 +285,6 @@ window.addEventListener("DOMContentLoaded", () => {
       )[0].itemQuantity;
 
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
-                             <p class="item-description">${element.itemDesc}</p>
                              <h4 class="item-price">\$${element.itemPrice}</h4>
                              <div class="quantity-element">
                              <label for="quantityTextBox${element.itemId}">Quantity</label>
@@ -330,7 +329,6 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 150);
 
   setTimeout(() => {
-    console.log(orderItems);
     generateReceipt(0, orderItems);
   }, 150);
 
@@ -365,7 +363,7 @@ function removeOrderItem(itemId) {
     }
   })
     .then((response) => {
-      document.querySelector(`#menu-item-${itemId}`).remove();
+      document.querySelector(`#order-item-${itemId}`).remove();
 
       updateCartBubble();
 
@@ -452,7 +450,7 @@ function showEmptyCartMessage() {
 
   let menuElement = document.createElement("div");
 
-  menuElement.className = "menu-item";
+  menuElement.className = "order-item";
   menuElement.innerHTML = `<p>Your Cart is Empty</p>`;
 
   orderElement.appendChild(menuElement);
