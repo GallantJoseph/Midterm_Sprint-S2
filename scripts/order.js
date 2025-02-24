@@ -292,7 +292,8 @@ window.addEventListener("DOMContentLoaded", () => {
     </table>
     `;
 
-    document.querySelector("#order-receipt").innerHTML = orders.length !== 0 ? receiptHTML : "";
+    document.querySelector("#order-receipt").innerHTML =
+      orders.length !== 0 ? receiptHTML : "";
 
     //return [subTotal, hst, total, discount, discountedTotal];
     // since i dont really know how the receipt should look,
@@ -421,26 +422,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
       orderElement.appendChild(menuElement);
     });
-  }
-
-  // Get the item price given its itemId
-  function getItemPrice(itemId) {
-    console.log(menuItems);
-    let itemPrice = menuItems.filter((item) => item.itemId === itemId)[0]
-      .itemPrice;
-
-    return itemPrice;
-  }
-
-  function calculateSubtotal() {
-    let orderItems = JSON.parse(getItems());
-    let subTotal = 0;
-
-    orderItems.forEach((orderItem) => {
-      subTotal += getItemPrice(orderItem.itemId) * orderItem.itemQuantity;
-    });
-
-    return subTotal;
   }
 
   // Create the Order Items elements with their corresponding quantity

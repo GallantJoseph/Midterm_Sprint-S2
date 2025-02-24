@@ -7,12 +7,21 @@
   box-sizing: border-box;
   font-family: "Times New Roman", Times, serif;
 }
-body {
-  background-image: linear-gradient(to bottom right, #34251b, #654835);
-}
 
 h2 {
   font-weight: normal;
+}
+
+/* Shared background-image gradient */
+body,
+form,
+footer,
+.menu-item,
+.order-item,
+#promo-code,
+.menuNav,
+.mainNav {
+  background-image: linear-gradient(to bottom right, #34251b, #654835);
 }
 
 #pageContainer {
@@ -45,7 +54,6 @@ h2 {
   justify-content: space-between;
   border-radius: 8px;
   align-items: center;
-  background-image: linear-gradient(to bottom right, #34251b, #654835);
   border: 4px solid rgba(0, 0, 0, 0.425);
   height: 100px;
   text-align: center;
@@ -189,7 +197,6 @@ h2 {
   grid-template-rows: auto 1.5fr 1.5fr 1fr 1fr;
   align-items: center;
   margin: 20px;
-  background-image: linear-gradient(to bottom right, rgb(100, 82, 70), #583e2d);
   color: white;
   border: 2px solid rgb(216, 195, 179);
   border-radius: 15px;
@@ -229,7 +236,7 @@ h2 {
   display: flex;
 }
 
-/* shared with menu-item (base) */
+/* Only the layout is different from menu-item (base) */
 .order-item {
   grid-template-rows: auto 2fr 1fr 2.5fr auto;
 }
@@ -320,7 +327,6 @@ h2 {
   height: fit-content;
   margin: 32px auto;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-  background-image: linear-gradient(to bottom right, rgb(100, 82, 70), #583e2d);
   color: white;
   border: 2px solid rgb(216, 195, 179);
   border-radius: 15px;
@@ -372,7 +378,6 @@ form {
   gap: 16px;
   grid-template-columns: 1fr 1fr;
   padding: 24px;
-  background-color: #654835;
   color: white;
   border: 2px solid rgb(216, 195, 179);
   border-radius: 15px;
@@ -519,7 +524,6 @@ footer {
   padding: 10px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
   text-align: center;
-  background-image: linear-gradient(to bottom right, #34251b, #654835);
   border: 4px solid rgba(246, 246, 238, 0.631);
   border-radius: 8px;
   color: white;
@@ -565,21 +569,21 @@ table {
   border-top: none;
 }
 
-@media only screen and (min-width: 901px) and (max-width: 1200px) {
+@media only screen and (min-width: 931px) and (max-width: 1200px) {
   .menu-category {
     grid-template-columns: repeat(3, 1fr);
     margin: auto;
   }
 }
 
-@media only screen and (min-width: 601px) and (max-width: 900px) {
+@media only screen and (min-width: 636px) and (max-width: 930px) {
   .menu-category {
     grid-template-columns: repeat(2, 1fr);
     margin: auto;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 635px) {
   .menu-category {
     grid-template-columns: 1fr;
     margin: auto;
