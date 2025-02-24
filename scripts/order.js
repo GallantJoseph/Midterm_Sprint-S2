@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 150);
 
     setTimeout(() => {
-      generateReceipt(0, orderItems);
+      generateReceipt(orderItems);
     }, 150);
 
     updateCartBubble();
@@ -200,17 +200,18 @@ window.addEventListener("DOMContentLoaded", () => {
   //   itemPrice: price,
   //   itemName: name,
   // }
-  function generateReceipt(discountAmount = 0, orders) {
+  function generateReceipt(orders, discountAmount = 0) {
     // Have a list of valid discounts with corresponding discount amounts in decimal format
     // e.g. "Python" = 20% off = 0.2
 
     let subtotal = 0.0;
 
+    // Begin the table
     let receiptHTML = `
     <table>
       <th colspan="2" class="centertext">-------------CODE BREW CAF&Eacute;-------------</th>`;
     orders.forEach((order) => {
-      let id = order.itemId;
+      // For each item, add a row to the table with item name and price
       let quantity = parseInt(order.itemQuantity);
       let price = parseFloat(order.itemPrice);
       let name = order.itemName;
@@ -218,7 +219,6 @@ window.addEventListener("DOMContentLoaded", () => {
       let cost = quantity * price;
       subtotal += cost;
 
-      // Build each line to be displayed, or create an array of lines
       receiptHTML += `
       <tr>
         <td>${quantity}x ${name.toUpperCase()}</td>
@@ -227,11 +227,14 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
     });
 
+    // Calculate HST and Total
     let hst = subtotal * 0.15;
     let total = subtotal + hst;
 
     let discount = 0;
     let discountedTotal = 0;
+
+    // If discount exists, display and deduct
     let discountHTML = ``;
     if (discountAmount !== 0) {
       discount = total * discountAmount;
@@ -241,6 +244,7 @@ window.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
+    // Display remaining variables
     receiptHTML += `
       <tr>
         <td></td>
@@ -288,7 +292,7 @@ window.addEventListener("DOMContentLoaded", () => {
     </table>
     `;
 
-    document.querySelector("#order-receipt").innerHTML = receiptHTML;
+    document.querySelector("#order-receipt").innerHTML = orders.length !== 0 ? receiptHTML : "";
 
     //return [subTotal, hst, total, discount, discountedTotal];
     // since i dont really know how the receipt should look,
@@ -448,7 +452,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }, 150);
 
   setTimeout(() => {
-    generateReceipt(0, orderItems);
+    generateReceipt(orderItems);
   }, 150);
 
   updateCartBubble();
