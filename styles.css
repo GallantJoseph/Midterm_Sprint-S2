@@ -120,7 +120,8 @@ h2 {
   background-color: rgba(245, 245, 220, 0.734);
   border-radius: 8px;
   border: 2px solid rgb(244, 244, 222);
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 40px;
   margin: auto;
   margin-top: 30px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
@@ -445,8 +446,15 @@ form input[type="radio"] {
 
 #menu-section h2,
 main h2 {
+  margin: auto;
   font-family: DotGothic16;
   text-align: center;
+  width: 98%;
+  background-color: rgba(255, 255, 255, 0.654);
+  padding: 10px;
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
 .socials {
@@ -457,7 +465,7 @@ main h2 {
   text-align: center;
   padding-top: 10px;
   font-size: 20pt;
-  height: 320px;
+  height: 350px;
   border-radius: 8px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
@@ -519,7 +527,50 @@ table {
 .foot {
   border-top: none;
 }
+/*start*/
+.bio-item {
+  margin: auto;
+  align-items: center;
+  background-color: rgba(245, 245, 220, 0.734);
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  border-radius: 15px;
+  color: black;
+  overflow: hidden;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  width: 65%;
+  padding: 15px;
+  text-align: center;
+}
 
+.bio-item img {
+  margin: auto;
+  border: 2px solid beige;
+  width: 40%;
+
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.bio-item h3 {
+  height: fit-content;
+}
+
+.bio-name {
+  color: rgb(0, 0, 0);
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 8px;
+  height: fit-content;
+}
+
+.bio-description {
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  margin: auto;
+  height: fit-content;
+  width: 50%;
+}
+/*finsih*/
 @media only screen and (min-width: 901px) and (max-width: 1200px) {
   .menu-category {
     grid-template-columns: repeat(3, 1fr);
