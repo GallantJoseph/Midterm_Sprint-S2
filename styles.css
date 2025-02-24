@@ -132,6 +132,7 @@ footer,
   padding-bottom: 40px;
   margin: auto;
   margin-top: 30px;
+  width: 65%;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
@@ -587,7 +588,7 @@ table {
   color: black;
   overflow: hidden;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-  width: 65%;
+  width: 70%;
   padding: 15px;
   text-align: center;
 }
@@ -631,8 +632,10 @@ table {
   }
 
   .aboutUs,
+  .socials,
   .visitUs,
-  .reviewBox {
+  .reviewBox,
+  .bio-item {
     width: 80%;
   }
 }
@@ -644,9 +647,14 @@ table {
     margin: auto;
   }
   .aboutUs,
+  .socials,
   .visitUs,
-  .reviewBox {
+  .reviewBox,
+  .bio-item {
     width: 85%;
+  }
+  .bio-description {
+    width: 80%;
   }
 }
 
@@ -658,8 +666,13 @@ table {
   }
 
   .aboutUs,
+  .socials,
   .visitUs,
-  .reviewBox {
+  .reviewBox,
+  .bio-item {
     width: 90%;
+  }
+  .bio-description {
+    width: 80%;
   }
 }
