@@ -593,8 +593,9 @@ table {
 
 .bio-item img {
   margin: auto;
-  border: 2px solid beige;
+  border: 4px solid beige;
   width: 40%;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 
   object-fit: cover;
   border-radius: 10px;
@@ -606,14 +607,14 @@ table {
 
 .bio-name {
   color: rgb(0, 0, 0);
-  font-size: 1.8rem;
+  font-size: 24pt;
   font-weight: bold;
   margin-top: 8px;
   height: fit-content;
 }
 
 .bio-description {
-  font-size: 1rem;
+  font-size: 16pt;
   color: rgb(0, 0, 0);
   margin: auto;
   height: fit-content;
