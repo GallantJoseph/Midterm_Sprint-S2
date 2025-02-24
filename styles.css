@@ -296,10 +296,55 @@ h2 {
   border: 2px solid #ccb7a7;
 }
 
-#statusText {
-  background-color: rgba(0, 0, 0, 50%);
-  padding-left: 16px;
+#promo-code {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+  grid-template-columns: 1fr 1fr;
+  font-size: 1.2em;
+  width: fit-content;
+  height: fit-content;
+  margin: 32px auto;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  background-image: linear-gradient(to bottom right, rgb(100, 82, 70), #583e2d);
+  color: white;
+  border: 2px solid rgb(216, 195, 179);
+  border-radius: 15px;
+  align-items: center;
 }
+
+#promo-code input {
+  height: fit-content;
+  padding: 5px;
+  background-color: #ccb7a7;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  width: 136px;
+}
+
+#promo-code input[type="text"] {
+  font-size: 1em;
+  height: fit-content;
+  padding: 5px;
+  background-color: #ccb7a7;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+
+#statusText {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding-left: 16px;
+  height: 144px;
+  border: 2px solid rgb(216, 195, 179);
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 100ms ease-in-out;
+}
+
 .success {
   color: green;
 }
@@ -320,7 +365,7 @@ form {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
-form ::placeholder {
+::placeholder {
   color: #654835;
 }
 

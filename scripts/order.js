@@ -14,15 +14,26 @@
 //   itemName: name,
 // }]
 
+const PROMO_CODES = [
+  ["TEACHER100", 100],
+  ["BREW75", 75],
+  ["BREW50", 50],
+  ["BREW25", 25],
+  ["BREW10", 10],
+];
+
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#orderBtn").addEventListener("click", () => {
     // Submit an order and display an appropriate message
     submitOrder()
       .then((response) => {
-        displayStatus(response, "success");
+        displayStatus(response, "success", 5000);
+
+        // Clear all the value
+        document.querySelector("#orderForm").reset();
       })
       .catch((response) => {
-        displayStatus(response, "fail");
+        displayStatus(response, "fail", 2000);
       });
   });
 
@@ -47,6 +58,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 150);
 
     updateCartBubble();
+
+    // Scroll back at the top of the page after the update
+    document
+      .getElementById("pageContainer")
+      .scrollIntoView({ behavior: "smooth" });
   });
 
   document.querySelector("#cashPaymentRdio").addEventListener("click", () => {
@@ -107,8 +123,51 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     // Validate Order Type
-    if (!document.querySelector("#pickUpRdio").checked && !document.querySelector("#deliveryRdio").checked) {
-      error += "Select an Order Type (Pickup or Delivery)<br />";
+    if (
+      !document.querySelector("#pickUpRdio").checked &&
+      !document.querySelector("#deliveryRdio").checked
+    ) {
+      error += "Select an Order Type<br />";
+    }
+
+    // Validate the Payment Method and Credit Card details, if necessary
+    if (
+      !document.querySelector("#cashPaymentRdio").checked &&
+      !document.querySelector("#creditPaymentRdio").checked
+    ) {
+      error += "Select a Payment Method<br />";
+    } else if (document.querySelector("#creditPaymentRdio").checked) {
+      // Validate the Credit Card details
+
+      let creditCardRegex = /^\d{16}$/;
+      let expiryDateRegex = /^\d{2}\/\d{2}$/;
+      let cvvNumRegex = /^\d{3,4}$/;
+
+      let creditCardNumber = document
+        .querySelector("#creditCardNumberTextBox")
+        .value.trim();
+      let expiryDate = document
+        .querySelector("#expiryDateTextBox")
+        .value.trim();
+      let cvvNum = document.querySelector("#cvvCodeTextBox").value.trim();
+
+      if (creditCardNumber === "") {
+        error += "Enter a Credit Card Number<br />";
+      } else if (!creditCardRegex.test(creditCardNumber)) {
+        error += "Invalid Credit Card Number<br />";
+      }
+
+      if (expiryDate === "") {
+        error += "Enter an Expiry Date<br />";
+      } else if (!expiryDateRegex.test(expiryDate)) {
+        error += "Invalid Expiry Date<br />";
+      }
+
+      if (cvvNum === "") {
+        error += "Enter a CVV Number<br />";
+      } else if (!cvvNumRegex.test(cvvNum)) {
+        error += "Invalid CVV Number<br />";
+      }
     }
 
     if (error !== "") {
@@ -117,14 +176,21 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // Displays a message inside statusText, with a class name. Clears after a few seconds.
-  async function displayStatus(message, className) {
+  function displayStatus(message, className, timeOut) {
     let statusText = document.querySelector("#statusText");
     statusText.innerHTML = message;
     statusText.className = className;
+    statusText.style.opacity = 1;
 
     setTimeout(() => {
-      statusText.innerHTML = "";
-    }, 2000);
+      // Hide the message
+      statusText.style.opacity = 0;
+
+      // Clear the message
+      setTimeout(() => {
+        statusText.innerHTML = "";
+      }, 150);
+    }, timeOut);
   }
 
   // Each order is in the following format:
@@ -234,7 +300,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // Show the Current Order Section
   class MenuItem {
-    constructor(itemId, itemCategory, itemName, itemDesc, itemPrice, itemImage) {
+    constructor(
+      itemId,
+      itemCategory,
+      itemName,
+      itemDesc,
+      itemPrice,
+      itemImage
+    ) {
       this.itemId = itemId;
       this.itemCategory = itemCategory;
       this.itemName = itemName;
@@ -326,7 +399,9 @@ window.addEventListener("DOMContentLoaded", () => {
       menuElement.appendChild(image);
 
       // Get the quantity of the selected item
-      let currItemQuantity = orderItems.filter((orderItem) => orderItem.itemId === element.itemId)[0].itemQuantity;
+      let currItemQuantity = orderItems.filter(
+        (orderItem) => orderItem.itemId === element.itemId
+      )[0].itemQuantity;
 
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
                              <h4 class="item-price">\$${element.itemPrice}</h4>
@@ -347,7 +422,8 @@ window.addEventListener("DOMContentLoaded", () => {
   // Get the item price given its itemId
   function getItemPrice(itemId) {
     console.log(menuItems);
-    let itemPrice = menuItems.filter((item) => item.itemId === itemId)[0].itemPrice;
+    let itemPrice = menuItems.filter((item) => item.itemId === itemId)[0]
+      .itemPrice;
 
     return itemPrice;
   }
@@ -458,8 +534,12 @@ function updateItems() {
   try {
     orderDetails.forEach((element) => {
       let itemId = parseInt(element.id.match(/\d+$/));
-      let quantity = parseInt(element.querySelector(`#quantityTextBox${itemId}`).value);
-      let price = parseFloat(element.querySelector(".item-price").innerText.slice(1));
+      let quantity = parseInt(
+        element.querySelector(`#quantityTextBox${itemId}`).value
+      );
+      let price = parseFloat(
+        element.querySelector(".item-price").innerText.slice(1)
+      );
       let name = element.querySelector(".item-name").innerText;
 
       // Only add the element if the quantity is over 0
