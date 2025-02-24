@@ -569,23 +569,43 @@ table {
   border-top: none;
 }
 
+/* 3 columns */
 @media only screen and (min-width: 931px) and (max-width: 1200px) {
   .menu-category {
     grid-template-columns: repeat(3, 1fr);
     margin: auto;
   }
+
+  .aboutUs,
+  .visitUs,
+  .reviewBox {
+    width: 80%;
+  }
 }
 
+/* 2 columns */
 @media only screen and (min-width: 636px) and (max-width: 930px) {
   .menu-category {
     grid-template-columns: repeat(2, 1fr);
     margin: auto;
   }
+  .aboutUs,
+  .visitUs,
+  .reviewBox {
+    width: 85%;
+  }
 }
 
+/* 1 column */
 @media only screen and (max-width: 635px) {
   .menu-category {
     grid-template-columns: 1fr;
     margin: auto;
+  }
+
+  .aboutUs,
+  .visitUs,
+  .reviewBox {
+    width: 90%;
   }
 }
