@@ -94,7 +94,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     let phoneRegex = /^\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{4}$/;
     let emailRegex = /^\w+\@\w+(\.\w{2,})+$/;
-    let addressRegex = /^\d+(\-?[\d\w]+)*[\,\s]\s?\w+$/; // Accepts a: "#(-#*/X*), Street Name" Format, (i.e. 123-A, Main Street)
+    let addressRegex = /^\d+(\-?[\d\w]+)*([\,\s]\s?\w+)+$/; // Accepts a: "#(-#*/X*), Street Name" Format, (i.e. 123-A, Main Street)
 
     // Validate Name
     if (name === "") {
