@@ -585,9 +585,12 @@ footer {
   transform: scale(1.1);
 }
 
-table {
+table,
+th,
+td {
   margin: auto;
   border-collapse: collapse;
+  font-family: "DotGothic16";
 }
 
 .centertext {
