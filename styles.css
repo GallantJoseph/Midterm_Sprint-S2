@@ -432,18 +432,29 @@ footer {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
+#updateStatusText,
 #statusText {
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 16px;
   border: 2px solid rgb(216, 195, 179);
-  border-radius: 15px;
   opacity: 0;
   transition: opacity 150ms ease-in-out;
-  grid-area: statusText;
-  margin-left: 20px;
-  min-height: 10em;
   width: fit-content;
+}
+
+#updateStatusText {
+  margin: 16px auto;
+  padding: 8px;
+  height: 38px;
+  border-radius: 10px;
+}
+
+#statusText {
+  grid-area: statusText;
+  padding: 16px;
   column-count: 2;
+  min-height: 7em;
+  margin-left: 20px;
+  border-radius: 15px;
 }
 
 .success {

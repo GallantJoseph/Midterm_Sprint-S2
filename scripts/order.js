@@ -27,42 +27,44 @@ window.addEventListener("DOMContentLoaded", () => {
     // Submit an order and display an appropriate message
     submitOrder()
       .then((response) => {
-        displayStatus(response, "success", 5000);
+        displayStatus(response, "statusText", "success", 5000);
 
         // Clear all the value
         document.querySelector("#orderForm").reset();
       })
       .catch((response) => {
-        displayStatus(response, "fail", 2000);
+        displayStatus(response, "statusText", "fail", 2000);
       });
   });
 
   document.querySelector("#updateOrderBtn").addEventListener("click", () => {
     // Update the quantities, clear the order elements and reload the updated values
 
-    updateItems();
+    try {
+      updateItems();
 
-    document.querySelector("#order-details").innerHTML = "";
-    menuItems = [];
-    createOrderItems();
+      document.querySelector("#order-details").innerHTML = "";
+      menuItems = [];
+      createOrderItems();
 
-    // TODO: make it work with Promise instead
+      let orderItems;
+      setTimeout(() => {
+        orderItems = JSON.parse(getItems());
+      }, 150);
 
-    let orderItems;
-    setTimeout(() => {
-      orderItems = JSON.parse(getItems());
-    }, 150);
+      setTimeout(() => {
+        generateReceipt(orderItems);
+      }, 150);
 
-    setTimeout(() => {
-      generateReceipt(orderItems);
-    }, 150);
+      updateCartBubble();
 
-    updateCartBubble();
-
-    // Scroll back at the top of the page after the update
-    document
-      .getElementById("pageContainer")
-      .scrollIntoView({ behavior: "smooth" });
+      // Scroll back at the top of the page after the update
+      document
+        .getElementById("pageContainer")
+        .scrollIntoView({ behavior: "smooth" });
+    } catch (error) {
+      displayStatus(error.message, "updateStatusText", "fail", 2000);
+    }
   });
 
   document.querySelector("#cashPaymentRdio").addEventListener("click", () => {
@@ -176,8 +178,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   // Displays a message inside statusText, with a class name. Clears after a few seconds.
-  function displayStatus(message, className, timeOut) {
-    let statusText = document.querySelector("#statusText");
+  function displayStatus(message, elementId, className, timeOut) {
+    let statusText = document.querySelector(`#${elementId}`);
     statusText.innerHTML = message;
     statusText.className = className;
     statusText.style.opacity = 1;
@@ -193,13 +195,6 @@ window.addEventListener("DOMContentLoaded", () => {
     }, timeOut);
   }
 
-  // Each order is in the following format:
-  // {
-  //   itemId: id,
-  //   itemQuantity: quantity,
-  //   itemPrice: price,
-  //   itemName: name,
-  // }
   function generateReceipt(orders) {
     let subtotal = 0.0;
 
@@ -304,7 +299,6 @@ window.addEventListener("DOMContentLoaded", () => {
       orders.length !== 0 ? receiptHTML : "";
   }
 
-  // Show the Current Order Section
   class MenuItem {
     constructor(
       itemId,
@@ -517,28 +511,32 @@ function updateItems() {
   // TODO: Find a better way to handle when the order is empty
   // If order-details contains no element, error on the quantityTextBox querySelector as it doesn't exist
   console.dir(orderDetails);
-  try {
-    orderDetails.forEach((element) => {
-      let itemId = parseInt(element.id.match(/\d+$/));
-      let quantity = parseInt(
-        element.querySelector(`#quantityTextBox${itemId}`).value
-      );
-      let price = parseFloat(
-        element.querySelector(".item-price").innerText.slice(1)
-      );
-      let name = element.querySelector(".item-name").innerText;
+
+  orderDetails.forEach((element) => {
+    let itemId = parseInt(element.id.match(/\d+$/));
+    let quantity = element.querySelector(`#quantityTextBox${itemId}`).value;
+    let price = parseFloat(
+      element.querySelector(".item-price").innerText.slice(1)
+    );
+    let name = element.querySelector(".item-name").innerText;
+
+    // Validate the quantity
+    if (!isNaN(element.querySelector(`#quantityTextBox${itemId}`).value)) {
+      quantity = parseInt(quantity);
 
       // Only add the element if the quantity is over 0
       if (quantity > 0) {
         // Update the element with the corresponding itemId and itemQuantity in the "order" localStorage key
         orderStorage.push(orderItem(itemId, quantity, price, name));
+      } else if (quantity < 0) {
+        throw new Error("Quantity Must Be 0 Or More.");
       }
+    } else {
+      throw new Error("Quantity Must Be a Number");
+    }
 
-      localStorage.setItem("order", JSON.stringify(orderStorage));
-    });
-  } catch (error) {
-    console.log(error);
-  }
+    localStorage.setItem("order", JSON.stringify(orderStorage));
+  });
 }
 
 function orderItem(id, quantity, price, name) {
