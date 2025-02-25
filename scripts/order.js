@@ -3,15 +3,15 @@
   Authors:  Ashton Dennis,
             Joseph Gallant,
             Justin Greenslade
-  Dates:  February 17, 2025 - 
+  Dates:  February 17, 2025 - February 26, 2025
 */
 
 // "order" localStorage contains values in the following format:
 // [{
-//   itemId: id,
-//   itemQuantity: quantity,
-//   itemPrice: price,
-//   itemName: name,
+//   "itemId": 0,
+//   "itemQuantity": 1,
+//   "itemPrice": 1.99,
+//   "itemName": "Coffee",
 // }]
 
 const PROMO_CODES = [

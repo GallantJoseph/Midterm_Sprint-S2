@@ -3,7 +3,7 @@
   Authors:  Ashton Dennis,
             Joseph Gallant,
             Justin Greenslade
-  Dates:  February 17, 2025 - 
+  Dates:  February 17, 2025 - February 26, 2025
 */
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -87,7 +87,9 @@ function addItem(id, price, name) {
 
     localStorage.setItem("order", JSON.stringify(orders));
   }
-  document.querySelector(`#button${id}`).innerHTML = `<button class="menubuttonClicked" id="button${id}">&#10003;</button>`;
+  document.querySelector(
+    `#button${id}`
+  ).innerHTML = `<button class="menubuttonClicked" id="button${id}">&#10003;</button>`;
   document.querySelector(`#overlay${id}`).style.visibility = "visible";
   setTimeout(() => {
     document.querySelector(

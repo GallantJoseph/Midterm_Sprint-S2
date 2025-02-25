@@ -3,7 +3,7 @@
   Authors:  Ashton Dennis,
             Joseph Gallant,
             Justin Greenslade
-  Dates:  February 17, 2025 - 
+  Dates:  February 17, 2025 - February 26, 2025
 */
 
 window.addEventListener("DOMContentLoaded", function () {
