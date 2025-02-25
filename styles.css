@@ -5,7 +5,7 @@
             Justin Greenslade
   Dates:  February 17, 2025 - February 26, 2025
 */
-
+/* Default page settings*/
 @font-face {
   font-family: "DotGothic16";
   src: url("Fonts/DotGothic16-Regular.ttf");
@@ -32,7 +32,7 @@ footer,
 #updateOrderBtn {
   background-image: linear-gradient(to bottom right, #34251b, #654835);
 }
-
+/* main content backround transparent beans backround*/
 #pageContainer {
   display: grid;
   grid-template-columns: 1fr;
@@ -48,16 +48,12 @@ footer,
   background-repeat: no-repeat;
   position: relative;
 }
-
+/* main headder image for each page*/
 .mainHeader img {
   width: 100%;
   border-radius: 8px;
 }
-.onPage {
-  background-color: rgba(255, 255, 255, 0.199);
-  width: 150px;
-}
-.menuNav,
+/* main settings for all nav bars */
 .mainNav {
   display: flex;
   justify-content: space-between;
@@ -73,8 +69,7 @@ footer,
   top: 0;
   z-index: 1000; /* Ensure it stays above other content */
 }
-
-.menuNav a,
+/* controls all nav bar links */
 .mainNav a {
   padding: 8px;
   float: left;
@@ -87,11 +82,11 @@ footer,
 .mainNav a:hover {
   transform: scale(1.1);
 }
-
+/* contrains car link and bubble for quanitiy */
 .cart-container {
   position: relative;
 }
-
+/* catains amount of items in cart*/
 #cart-bubble {
   position: absolute;
   top: -16px;
@@ -110,8 +105,17 @@ footer,
   /* Change this to visible to view and hidden to make invisable if items less then 1  */
   visibility: visible;
 }
+/* highlights what page you on in nav*/
+.onPage {
+  background-color: rgba(255, 255, 255, 0.199);
+  width: 150px;
+}
 
-.aboutUs {
+/* creates a base box for contains on home page*/
+.aboutUs,
+.visitUs,
+.bio-item,
+.socials {
   background-color: rgba(245, 245, 220, 0.631);
   border-radius: 10px;
   border: 2px solid rgb(244, 244, 222);
@@ -119,58 +123,76 @@ footer,
   margin: auto;
   margin-top: 30px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  text-align: center;
 }
-
-.aboutUs h2 {
+/* contain bio image*/
+.bio-item img {
+  margin: auto;
+  border: 4px solid beige;
+  width: 40%;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  object-fit: cover;
+  border-radius: 10px;
+}
+/* custom bio text to look differnt from other boxs*/
+.bio-description {
+  font-size: 16pt;
+  color: rgb(0, 0, 0);
+  margin: auto;
+  width: 50%;
+  line-height: 1.7rem;
+}
+/* matchs h2s across pages */
+.aboutUs h2,
+.visitUs h2,
+.bio-name,
+.bio-item h2,
+.reviewBox h2,
+.socials h2,
+.reviewBox h2 {
   color: black;
   text-align: center;
   font-size: 2rem;
+  margin-bottom: 20px;
 }
-
-.aboutUs p {
+/* controls text in boxs except for bio*/
+.aboutUs p,
+.visitUs p {
   color: black;
+  font-size: 1.2rem;
   line-height: 1.7rem;
 }
-
-.visitUs {
-  text-align: center;
-  background-color: rgba(245, 245, 220, 0.734);
-  border-radius: 8px;
-  border: 2px solid rgb(244, 244, 222);
-  padding-top: 20px;
-  padding-bottom: 40px;
-  margin: 32px auto;
-  width: 65%;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-}
-
+/* adjusts base default width*/
 .aboutUs,
 .visitUs,
-.reviewBox {
+.reviewBox,
+.bio-item,
+.socials {
   width: 65%;
 }
-
+/* bolds spaned text*/
 .bold {
   font-weight: 700;
 }
+/* contains slideshow of reviews */
 .reviewBox {
   justify-content: center;
   margin: auto;
   margin-top: 30px;
+  padding-top: 20px;
   background-color: rgba(245, 245, 220, 0.631);
   border-radius: 8px;
   border: 2px solid rgb(244, 244, 222);
   height: 400px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
-.reviewBox h2 {
-  font-size: 1.6rem;
-}
+/*contains the slideshow of reviews*/
 #review-section {
   display: flex;
   margin: 30px;
   justify-content: center;
 }
+/* designed review card holding the review info*/
 .review-card {
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -183,23 +205,65 @@ footer,
   text-align: center;
   max-width: 400px;
 }
-
+/*custom style for name on review card*/
 .review-card h3 {
   font-size: 16pt;
   margin-bottom: 10px;
 }
-
+/*style of text for review given */
 .review-card p {
   font-size: 14pt;
   margin-bottom: 10px;
 }
+/* design of stars in review*/
 .review-card .star {
   margin: auto;
   color: rgb(5, 5, 5);
+  font-size: 1.3em;
 }
-.star {
-  font-size: 1.5em;
+/* social media icons */
+.socials img {
+  display: inline-block;
+  padding-right: 30px;
+  transition: transform 0.3s ease;
+} /* hover affect scaling up social icons*/
+.socials img:hover {
+  transform: scale(1.2);
 }
+/* footer for all pages */
+footer {
+  padding: 10px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  text-align: center;
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  border-radius: 8px;
+  color: white;
+  width: 100%;
+  height: 50px;
+  font-size: 18pt;
+}
+/* back to top button for all pages */
+.backtotop:link,
+.backtotop:visited {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+  margin: auto;
+  display: inline-block;
+  padding: 16px;
+  background-color: #463123;
+  color: #eae9e8;
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 16pt;
+  transition: transform 0.3s ease;
+}
+/* back to top button gover effect scaling up*/
+.backtotop:hover {
+  background-color: #463123f0;
+  color: #eae9e8;
+  transform: scale(1.1);
+}
+/* item template to hold info picture price ect.*/
 .menu-item,
 .order-item {
   display: grid;
@@ -217,7 +281,7 @@ footer,
   text-align: center;
   position: relative; /* Position the overlay correctly */
 }
-
+/* contain image within menu-item/order-item */
 .menu-item img,
 .order-item img {
   border: 1px solid beige;
@@ -226,14 +290,14 @@ footer,
   object-fit: cover;
   border-radius: 10px;
 }
-
+/* custom text inside item containers */
 .menu-item h3,
 .order-item h3 {
   margin-bottom: 8px;
   height: fit-content;
 }
 
-/* The overlay */
+/* cart image  overlay showing only when an item is added to cart */
 .menu-item .overlay,
 .order-item .overlay {
   position: absolute;
@@ -251,7 +315,7 @@ footer,
 .order-item {
   grid-template-rows: auto 2fr 1fr 2.5fr auto;
 }
-
+/* name of item in container*/
 .item-name {
   color: white;
   font-size: 1.8rem;
@@ -259,7 +323,7 @@ footer,
   margin-top: 8px;
   height: fit-content;
 }
-
+/* price of item in container*/
 .item-price {
   color: white;
   font-size: 1.2rem;
@@ -267,14 +331,14 @@ footer,
   font-weight: bold;
   height: fit-content;
 }
-
+/* description of item in container*/
 .item-description {
   font-size: 1rem;
   color: white;
   margin: 8px;
   height: fit-content;
 }
-
+/* custom menu button*/
 .menubutton {
   margin: auto;
   margin-top: 8px;
@@ -291,12 +355,12 @@ footer,
   transition: background-color 0.2s ease-out, color 0.2s ease-out;
   text-decoration: none;
 }
-
+/* hover effect on menu button to change colors */
 .menubutton:hover {
   background-color: #463123;
   color: #ccb7a7;
 }
-
+/* custom green checkmark when menu item is added to cart*/
 .menubuttonClicked {
   margin: auto;
   margin-top: 8px;
@@ -312,7 +376,7 @@ footer,
   transition: transfrom 0.3s ease;
   text-decoration: none;
 }
-
+/* custom update order button in cart*/
 #updateOrderBtn {
   display: block;
   width: fit-content;
@@ -325,7 +389,7 @@ footer,
   margin: 16px auto;
   border-radius: 15px;
 }
-
+/* when hovered border changes color*/
 #updateOrderBtn:hover {
   border: 2px solid #ccb7a7;
 }
@@ -534,59 +598,6 @@ main h2 {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
-.socials {
-  margin: 32px auto;
-  width: 65%;
-  background-color: rgba(245, 245, 220, 0.734);
-  border: 4px solid rgba(246, 246, 238, 0.631);
-  text-align: center;
-  padding-top: 10px;
-  font-size: 20pt;
-  height: 350px;
-  border-radius: 8px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-}
-.socials img {
-  display: inline-block;
-  padding-right: 30px;
-  transition: transform 0.3s ease;
-}
-.socials img:hover {
-  transform: scale(1.2);
-}
-
-footer {
-  padding: 10px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-  text-align: center;
-  border: 4px solid rgba(246, 246, 238, 0.631);
-  border-radius: 8px;
-  color: white;
-  width: 100%;
-  height: 50px;
-  font-size: 18pt;
-}
-
-.backtotop:link,
-.backtotop:visited {
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-  margin: auto;
-  display: inline-block;
-  padding: 16px;
-  background-color: #463123;
-  color: #eae9e8;
-  border: 4px solid rgba(246, 246, 238, 0.631);
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 16pt;
-  transition: transform 0.3s ease;
-}
-.backtotop:hover {
-  background-color: #463123f0;
-  color: #eae9e8;
-  transform: scale(1.1);
-}
-
 table,
 th,
 td {
@@ -606,51 +617,6 @@ td {
 .foot {
   border-top: none;
 }
-/*start*/
-.bio-item {
-  margin: 32px auto;
-  align-items: center;
-  background-color: rgba(245, 245, 220, 0.734);
-  border: 4px solid rgba(246, 246, 238, 0.631);
-  border-radius: 15px;
-  color: black;
-  overflow: hidden;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-  width: 70%;
-  padding: 15px;
-  text-align: center;
-}
-
-.bio-item img {
-  margin: auto;
-  border: 4px solid beige;
-  width: 40%;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
-
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.bio-item h3 {
-  height: fit-content;
-}
-
-.bio-name {
-  color: rgb(0, 0, 0);
-  font-size: 24pt;
-  font-weight: bold;
-  margin-top: 8px;
-  height: fit-content;
-}
-
-.bio-description {
-  font-size: 16pt;
-  color: rgb(0, 0, 0);
-  margin: auto;
-  height: fit-content;
-  width: 50%;
-}
-/*finish*/
 
 /* 3 columns */
 @media only screen and (min-width: 931px) and (max-width: 1200px) {
