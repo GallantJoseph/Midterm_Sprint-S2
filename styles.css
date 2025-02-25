@@ -28,7 +28,8 @@ footer,
 .order-item,
 #promo-code,
 .menuNav,
-.mainNav {
+.mainNav,
+#updateOrderBtn {
   background-image: linear-gradient(to bottom right, #34251b, #654835);
 }
 
@@ -317,11 +318,12 @@ footer,
   width: fit-content;
   height: fit-content;
   padding: 16px;
-  background-color: #463123;
-  color: #ccb7a7;
+  font-size: 1.4em;
+  color: white;
   border: 2px solid #463123;
   transition: border-color 0.2s ease-out, color 0.2s ease-out;
   margin: 16px auto;
+  border-radius: 15px;
 }
 
 #updateOrderBtn:hover {
@@ -336,7 +338,7 @@ footer,
   font-size: 1.2em;
   width: fit-content;
   height: fit-content;
-  margin: 32px auto;
+  margin: 16px auto;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
   color: white;
   border: 2px solid rgb(216, 195, 179);
