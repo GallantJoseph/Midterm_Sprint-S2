@@ -188,10 +188,7 @@ window.addEventListener("DOMContentLoaded", () => {
   //   itemPrice: price,
   //   itemName: name,
   // }
-  function generateReceipt(orders, discountAmount = 0) {
-    // Have a list of valid discounts with corresponding discount amounts in decimal format
-    // e.g. "Python" = 20% off = 0.2
-
+  function generateReceipt(orders) {
     let subtotal = 0.0;
 
     // Begin the table
@@ -219,16 +216,38 @@ window.addEventListener("DOMContentLoaded", () => {
     let hst = subtotal * 0.15;
     let total = subtotal + hst;
 
-    let discount = 0;
-    let discountedTotal = 0;
+    // Check discount code for validity
+    let promoCode = document.querySelector("#promoCodeTextBox").value.toUpperCase();
+    let discountAmount = 0;
+    let codeUsed = "";
+    for (element of PROMO_CODES) {
+      if (element[0] === promoCode) {
+        codeUsed = element[0];
+        discountAmount = element[1] / 100;
+        break;
+      }
+    }
 
     // If discount exists, display and deduct
     let discountHTML = ``;
     if (discountAmount !== 0) {
-      discount = total * discountAmount;
-      discountedTotal = total - discountAmount;
+      let discount = total * discountAmount;
+      let discountedTotal = total - discount;
       discountHTML = `
-      
+      <tr>
+        <td>CODE "${codeUsed}"</td>
+        <td class="righttable">-$${discount.toFixed(2)}</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td class="righttable">--------</td>
+      </tr>
+
+      <tr>
+        <td>NEW TOTAL</td>
+        <td class="righttable">$${discountedTotal.toFixed(2)}</td>
+      </tr>
       `;
     }
 
@@ -259,20 +278,7 @@ window.addEventListener("DOMContentLoaded", () => {
         <td class="righttable">$${total.toFixed(2)}</td>
       </tr>
 
-      <tr>
-        <td>CODE "XXXXXXXX"</td>
-        <td class="righttable">-$###.##</td>
-      </tr>
-
-      <tr>
-        <td></td>
-        <td class="righttable">========</td>
-      </tr>
-
-      <tr>
-        <td>NEW TOTAL</td>
-        <td class="righttable">$###.##</td>
-      </tr>
+      ${discountHTML}
 
       <tr>
         <td colspan="2" class="foot">------------------------------------------</td>
@@ -281,13 +287,6 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
 
     document.querySelector("#order-receipt").innerHTML = orders.length !== 0 ? receiptHTML : "";
-
-    //return [subTotal, hst, total, discount, discountedTotal];
-    // since i dont really know how the receipt should look,
-    // i calculate all the values and return them in an array
-    // so its easy to implement elsewhere.
-    // you can probably just do something like:
-    // let receiptValues = receiptValues(1.99, 2.38, etc...);
   }
 
   // Show the Current Order Section
