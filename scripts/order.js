@@ -60,7 +60,9 @@ window.addEventListener("DOMContentLoaded", () => {
     updateCartBubble();
 
     // Scroll back at the top of the page after the update
-    document.getElementById("pageContainer").scrollIntoView({ behavior: "smooth" });
+    document
+      .getElementById("pageContainer")
+      .scrollIntoView({ behavior: "smooth" });
   });
 
   document.querySelector("#cashPaymentRdio").addEventListener("click", () => {
@@ -121,12 +123,18 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     // Validate Order Type
-    if (!document.querySelector("#pickUpRdio").checked && !document.querySelector("#deliveryRdio").checked) {
+    if (
+      !document.querySelector("#pickUpRdio").checked &&
+      !document.querySelector("#deliveryRdio").checked
+    ) {
       error += "Select an Order Type<br />";
     }
 
     // Validate the Payment Method and Credit Card details, if necessary
-    if (!document.querySelector("#cashPaymentRdio").checked && !document.querySelector("#creditPaymentRdio").checked) {
+    if (
+      !document.querySelector("#cashPaymentRdio").checked &&
+      !document.querySelector("#creditPaymentRdio").checked
+    ) {
       error += "Select a Payment Method<br />";
     } else if (document.querySelector("#creditPaymentRdio").checked) {
       // Validate the Credit Card details
@@ -135,8 +143,12 @@ window.addEventListener("DOMContentLoaded", () => {
       let expiryDateRegex = /^\d{2}\/\d{2}$/;
       let cvvNumRegex = /^\d{3,4}$/;
 
-      let creditCardNumber = document.querySelector("#creditCardNumberTextBox").value.trim();
-      let expiryDate = document.querySelector("#expiryDateTextBox").value.trim();
+      let creditCardNumber = document
+        .querySelector("#creditCardNumberTextBox")
+        .value.trim();
+      let expiryDate = document
+        .querySelector("#expiryDateTextBox")
+        .value.trim();
       let cvvNum = document.querySelector("#cvvCodeTextBox").value.trim();
 
       if (creditCardNumber === "") {
@@ -217,7 +229,9 @@ window.addEventListener("DOMContentLoaded", () => {
     let total = subtotal + hst;
 
     // Check discount code for validity
-    let promoCode = document.querySelector("#promoCodeTextBox").value.toUpperCase();
+    let promoCode = document
+      .querySelector("#promoCodeTextBox")
+      .value.toUpperCase();
     let discountAmount = 0;
     let codeUsed = "";
     for (element of PROMO_CODES) {
@@ -281,17 +295,25 @@ window.addEventListener("DOMContentLoaded", () => {
       ${discountHTML}
 
       <tr>
-        <td colspan="2" class="foot">------------------------------------------</td>
+        <td colspan="2" class="foot">---------------------------------------------</td>
       </tr>
     </table>
     `;
 
-    document.querySelector("#order-receipt").innerHTML = orders.length !== 0 ? receiptHTML : "";
+    document.querySelector("#order-receipt").innerHTML =
+      orders.length !== 0 ? receiptHTML : "";
   }
 
   // Show the Current Order Section
   class MenuItem {
-    constructor(itemId, itemCategory, itemName, itemDesc, itemPrice, itemImage) {
+    constructor(
+      itemId,
+      itemCategory,
+      itemName,
+      itemDesc,
+      itemPrice,
+      itemImage
+    ) {
       this.itemId = itemId;
       this.itemCategory = itemCategory;
       this.itemName = itemName;
@@ -383,7 +405,9 @@ window.addEventListener("DOMContentLoaded", () => {
       menuElement.appendChild(image);
 
       // Get the quantity of the selected item
-      let currItemQuantity = orderItems.filter((orderItem) => orderItem.itemId === element.itemId)[0].itemQuantity;
+      let currItemQuantity = orderItems.filter(
+        (orderItem) => orderItem.itemId === element.itemId
+      )[0].itemQuantity;
 
       let menuElementHTML = `<h3 class="item-name">${element.itemName}</h3>
                              <h4 class="item-price">\$${element.itemPrice}</h4>
@@ -496,8 +520,12 @@ function updateItems() {
   try {
     orderDetails.forEach((element) => {
       let itemId = parseInt(element.id.match(/\d+$/));
-      let quantity = parseInt(element.querySelector(`#quantityTextBox${itemId}`).value);
-      let price = parseFloat(element.querySelector(".item-price").innerText.slice(1));
+      let quantity = parseInt(
+        element.querySelector(`#quantityTextBox${itemId}`).value
+      );
+      let price = parseFloat(
+        element.querySelector(".item-price").innerText.slice(1)
+      );
       let name = element.querySelector(".item-name").innerText;
 
       // Only add the element if the quantity is over 0

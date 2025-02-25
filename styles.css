@@ -440,7 +440,7 @@ footer {
   opacity: 0;
   transition: opacity 150ms ease-in-out;
   grid-area: statusText;
-  margin: 20px;
+  margin-left: 20px;
   min-height: 10em;
   width: fit-content;
   column-count: 2;
