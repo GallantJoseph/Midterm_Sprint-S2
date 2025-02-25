@@ -681,3 +681,27 @@ td {
     width: 80%;
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  #order-section {
+    grid-template-columns: 1fr;
+    grid-template-areas: none;
+  }
+
+  #order-section h2,
+  #orderForm,
+  #order-receipt,
+  #statusText {
+    grid-area: unset;
+    margin: 20px auto;
+  }
+
+  #orderForm,
+  #statusText {
+    width: fit-content;
+  }
+
+  #order-receipt {
+    min-width: 414px;
+  }
+}

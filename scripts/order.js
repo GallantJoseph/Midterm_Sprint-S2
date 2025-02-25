@@ -29,8 +29,14 @@ window.addEventListener("DOMContentLoaded", () => {
       .then((response) => {
         displayStatus(response, "statusText", "success", 5000);
 
-        // Clear all the value
+        // Clear all the form values
         document.querySelector("#orderForm").reset();
+        showCreditSection(false);
+
+        // Clear all the order elements
+        updatePage(true);
+
+        alert(response);
       })
       .catch((response) => {
         displayStatus(response, "statusText", "fail", 2000);
@@ -41,39 +47,25 @@ window.addEventListener("DOMContentLoaded", () => {
     // Update the quantities, clear the order elements and reload the updated values
 
     try {
-      updateItems();
-
-      document.querySelector("#order-details").innerHTML = "";
-      menuItems = [];
-      createOrderItems();
-
-      let orderItems;
-      setTimeout(() => {
-        orderItems = JSON.parse(getItems());
-      }, 150);
-
-      setTimeout(() => {
-        generateReceipt(orderItems);
-      }, 150);
-
-      updateCartBubble();
-
-      // Scroll back at the top of the page after the update
-      document
-        .getElementById("pageContainer")
-        .scrollIntoView({ behavior: "smooth" });
+      updatePage();
     } catch (error) {
       displayStatus(error.message, "updateStatusText", "fail", 2000);
     }
   });
 
   document.querySelector("#cashPaymentRdio").addEventListener("click", () => {
-    document.querySelector("#credit-card-info").style.opacity = "0";
+    showCreditSection(false);
   });
 
   document.querySelector("#creditPaymentRdio").addEventListener("click", () => {
-    document.querySelector("#credit-card-info").style.opacity = "1";
+    showCreditSection(true);
   });
+
+  function showCreditSection(show) {
+    document.querySelector("#credit-card-info").style.opacity = show
+      ? "1"
+      : "0";
+  }
 
   function submitOrder() {
     return new Promise((resolve, reject) => {
@@ -98,77 +90,82 @@ window.addEventListener("DOMContentLoaded", () => {
     let emailRegex = /^\w+\@\w+(\.\w{2,})+$/;
     let addressRegex = /^\d+(\-?[\d\w]+)*([\,\s]\s?\w+)+$/; // Accepts a: "#(-#*/X*), Street Name" Format, (i.e. 123-A, Main Street)
 
-    // Validate Name
-    if (name === "") {
-      error += "Enter Your Name<br />";
-    }
-
-    // Validate Phone Number
-    if (phone === "") {
-      error += "Enter Your Phone Number<br />";
-    } else if (!phoneRegex.test(phone)) {
-      error += "Invalid Phone Number<br />";
-    }
-
-    // Validate Email
-    if (email === "") {
-      error += "Enter Your Email<br />";
-    } else if (!emailRegex.test(email)) {
-      error += "Invalid Email<br />";
-    }
-
-    // Validate Address
-    if (address === "") {
-      error += "Enter Your Address<br />";
-    } else if (!addressRegex.test(address)) {
-      error += "Invalid Address<br />";
-    }
-
-    // Validate Order Type
-    if (
-      !document.querySelector("#pickUpRdio").checked &&
-      !document.querySelector("#deliveryRdio").checked
-    ) {
-      error += "Select an Order Type<br />";
-    }
-
-    // Validate the Payment Method and Credit Card details, if necessary
-    if (
-      !document.querySelector("#cashPaymentRdio").checked &&
-      !document.querySelector("#creditPaymentRdio").checked
-    ) {
-      error += "Select a Payment Method<br />";
-    } else if (document.querySelector("#creditPaymentRdio").checked) {
-      // Validate the Credit Card details
-
-      let creditCardRegex = /^\d{16}$/;
-      let expiryDateRegex = /^\d{2}\/\d{2}$/;
-      let cvvNumRegex = /^\d{3,4}$/;
-
-      let creditCardNumber = document
-        .querySelector("#creditCardNumberTextBox")
-        .value.trim();
-      let expiryDate = document
-        .querySelector("#expiryDateTextBox")
-        .value.trim();
-      let cvvNum = document.querySelector("#cvvCodeTextBox").value.trim();
-
-      if (creditCardNumber === "") {
-        error += "Enter a Credit Card Number<br />";
-      } else if (!creditCardRegex.test(creditCardNumber)) {
-        error += "Invalid Credit Card Number<br />";
+    // Check if the order is empty
+    if (JSON.parse(getItems()).length === 0) {
+      error += "The Order is Empty<br />";
+    } else {
+      // Validate Name
+      if (name === "") {
+        error += "Enter Your Name<br />";
       }
 
-      if (expiryDate === "") {
-        error += "Enter an Expiry Date<br />";
-      } else if (!expiryDateRegex.test(expiryDate)) {
-        error += "Invalid Expiry Date<br />";
+      // Validate Phone Number
+      if (phone === "") {
+        error += "Enter Your Phone Number<br />";
+      } else if (!phoneRegex.test(phone)) {
+        error += "Invalid Phone Number<br />";
       }
 
-      if (cvvNum === "") {
-        error += "Enter a CVV Number<br />";
-      } else if (!cvvNumRegex.test(cvvNum)) {
-        error += "Invalid CVV Number<br />";
+      // Validate Email
+      if (email === "") {
+        error += "Enter Your Email<br />";
+      } else if (!emailRegex.test(email)) {
+        error += "Invalid Email<br />";
+      }
+
+      // Validate Address
+      if (address === "") {
+        error += "Enter Your Address<br />";
+      } else if (!addressRegex.test(address)) {
+        error += "Invalid Address<br />";
+      }
+
+      // Validate Order Type
+      if (
+        !document.querySelector("#pickUpRdio").checked &&
+        !document.querySelector("#deliveryRdio").checked
+      ) {
+        error += "Select an Order Type<br />";
+      }
+
+      // Validate the Payment Method and Credit Card details, if necessary
+      if (
+        !document.querySelector("#cashPaymentRdio").checked &&
+        !document.querySelector("#creditPaymentRdio").checked
+      ) {
+        error += "Select a Payment Method<br />";
+      } else if (document.querySelector("#creditPaymentRdio").checked) {
+        // Validate the Credit Card details
+
+        let creditCardRegex = /^\d{16}$/;
+        let expiryDateRegex = /^\d{2}\/\d{2}$/;
+        let cvvNumRegex = /^\d{3,4}$/;
+
+        let creditCardNumber = document
+          .querySelector("#creditCardNumberTextBox")
+          .value.trim();
+        let expiryDate = document
+          .querySelector("#expiryDateTextBox")
+          .value.trim();
+        let cvvNum = document.querySelector("#cvvCodeTextBox").value.trim();
+
+        if (creditCardNumber === "") {
+          error += "Enter a Credit Card Number<br />";
+        } else if (!creditCardRegex.test(creditCardNumber)) {
+          error += "Invalid Credit Card Number<br />";
+        }
+
+        if (expiryDate === "") {
+          error += "Enter an Expiry Date<br />";
+        } else if (!expiryDateRegex.test(expiryDate)) {
+          error += "Invalid Expiry Date<br />";
+        }
+
+        if (cvvNum === "") {
+          error += "Enter a CVV Number<br />";
+        } else if (!cvvNumRegex.test(cvvNum)) {
+          error += "Invalid CVV Number<br />";
+        }
       }
     }
 
@@ -296,7 +293,7 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
 
     document.querySelector("#order-receipt").innerHTML =
-      orders.length !== 0 ? receiptHTML : "";
+      orders.length !== 0 ? receiptHTML : "<h2>Your Cart is Empty</h2>";
   }
 
   class MenuItem {
@@ -318,6 +315,31 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   let menuItems = [];
+
+  // Function that updates the elements of the order, generates the receipt, and updates the cart bubble
+  function updatePage(clearBool) {
+    updateItems(clearBool);
+
+    document.querySelector("#order-details").innerHTML = "";
+    menuItems = [];
+    createOrderItems();
+
+    let orderItems;
+    setTimeout(() => {
+      orderItems = JSON.parse(getItems());
+    }, 150);
+
+    setTimeout(() => {
+      generateReceipt(orderItems);
+    }, 150);
+
+    updateCartBubble();
+
+    // Scroll back at the top of the page after the update
+    document
+      .getElementById("pageContainer")
+      .scrollIntoView({ behavior: "smooth" });
+  }
 
   // Create an array of the required MenuItem objects from a JSON file, and then call
   // the displayOrder function to generate every element on the page.
@@ -470,7 +492,8 @@ function removeOrderItem(itemId) {
       if (getItems() !== "[]") {
         updateItems();
       } else {
-        showEmptyCartMessage();
+        // Reload the page if the cart is empty
+        window.location.reload();
       }
     })
     .catch((response) => {
@@ -503,40 +526,40 @@ function getItems() {
 }
 
 // Update the "order" localStorage key data with the new quantities
-function updateItems() {
-  let orderDetails = document.querySelector("#order-details").childNodes;
-
+function updateItems(clear) {
   let orderStorage = [];
 
-  // TODO: Find a better way to handle when the order is empty
-  // If order-details contains no element, error on the quantityTextBox querySelector as it doesn't exist
-  console.dir(orderDetails);
+  // If the clear value is true, update with and empty array
+  // Check if the "order" local storage key is empty to make sure there are order elements to check
+  if (!clear && JSON.parse(getItems()).length > 0) {
+    let orderDetails = document.querySelector("#order-details").childNodes;
 
-  orderDetails.forEach((element) => {
-    let itemId = parseInt(element.id.match(/\d+$/));
-    let quantity = element.querySelector(`#quantityTextBox${itemId}`).value;
-    let price = parseFloat(
-      element.querySelector(".item-price").innerText.slice(1)
-    );
-    let name = element.querySelector(".item-name").innerText;
+    orderDetails.forEach((element) => {
+      let itemId = parseInt(element.id.match(/\d+$/));
+      let quantity = element.querySelector(`#quantityTextBox${itemId}`).value;
+      let price = parseFloat(
+        element.querySelector(".item-price").innerText.slice(1)
+      );
+      let name = element.querySelector(".item-name").innerText;
 
-    // Validate the quantity
-    if (!isNaN(element.querySelector(`#quantityTextBox${itemId}`).value)) {
-      quantity = parseInt(quantity);
+      // Validate the quantity
+      if (!isNaN(element.querySelector(`#quantityTextBox${itemId}`).value)) {
+        quantity = parseInt(quantity);
 
-      // Only add the element if the quantity is over 0
-      if (quantity > 0) {
-        // Update the element with the corresponding itemId and itemQuantity in the "order" localStorage key
-        orderStorage.push(orderItem(itemId, quantity, price, name));
-      } else if (quantity < 0) {
-        throw new Error("Quantity Must Be 0 Or More.");
+        // Only add the element if the quantity is over 0
+        if (quantity > 0) {
+          // Update the element with the corresponding itemId and itemQuantity in the "order" localStorage key
+          orderStorage.push(orderItem(itemId, quantity, price, name));
+        } else if (quantity < 0) {
+          throw new Error("Quantity Must Be 0 Or More.");
+        }
+      } else {
+        throw new Error("Quantity Must Be a Number");
       }
-    } else {
-      throw new Error("Quantity Must Be a Number");
-    }
+    });
+  }
 
-    localStorage.setItem("order", JSON.stringify(orderStorage));
-  });
+  localStorage.setItem("order", JSON.stringify(orderStorage));
 }
 
 function orderItem(id, quantity, price, name) {
