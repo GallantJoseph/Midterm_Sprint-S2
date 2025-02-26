@@ -129,6 +129,7 @@ function getItems() {
     return orderStorage;
   }
 }
+
 function showDrink() {
   let drinkSection = document.getElementById("drink");
 
@@ -145,6 +146,34 @@ function showDrink() {
 
 function showPastry() {
   let pastrySection = document.getElementById("pastry");
+
+  // Check the current display style and toggle it
+  if (
+    pastrySection.style.display === "none" ||
+    pastrySection.style.display === ""
+  ) {
+    pastrySection.style.display = "grid"; // Show pastrys
+  } else {
+    pastrySection.style.display = "none"; // Hide
+  }
+}
+
+function showSalad() {
+  let pastrySection = document.getElementById("salad");
+
+  // Check the current display style and toggle it
+  if (
+    pastrySection.style.display === "none" ||
+    pastrySection.style.display === ""
+  ) {
+    pastrySection.style.display = "grid"; // Show pastrys
+  } else {
+    pastrySection.style.display = "none"; // Hide
+  }
+}
+
+function showSide() {
+  let pastrySection = document.getElementById("side");
 
   // Check the current display style and toggle it
   if (

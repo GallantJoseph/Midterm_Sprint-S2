@@ -73,7 +73,7 @@
   },
   {
     "itemId": 9,
-    "itemCategory": "pastry",
+    "itemCategory": "side",
     "itemName": "Avocado Toast",
     "itemDesc": "A slice of toasted bread topped with creamy avocado and seasonings.",
     "itemPrice": 3.99,
@@ -94,5 +94,21 @@
     "itemDesc": "A moist, delicious muffin, perfect for a quick snack.",
     "itemPrice": 2.49,
     "itemImage": "../images/Muffin.jpg"
+  },
+  {
+    "itemId": 12,
+    "itemCategory": "salad",
+    "itemName": "Garden Salad",
+    "itemDesc": "Our classic vegan salad, topped with vegan ranch sauce and vegan cheese",
+    "itemPrice": 6.99,
+    "itemImage": "../images/veggie_salad.jpg"
+  },
+  {
+    "itemId": 13,
+    "itemCategory": "salad",
+    "itemName": "Greek Salad",
+    "itemDesc": "Get a taste of the mediterranean with our delicious greek salad.",
+    "itemPrice": 8.49,
+    "itemImage": "../images/greek_salad.jpg"
   }
 ]

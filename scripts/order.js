@@ -92,7 +92,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Check if the order is empty
     if (JSON.parse(getItems()).length === 0) {
-      error += "The Order is Empty<br />";
+      error += "Your Order is Empty<br />";
     } else {
       // Validate Name
       if (name === "") {
@@ -562,6 +562,7 @@ function updateItems(clear) {
   localStorage.setItem("order", JSON.stringify(orderStorage));
 }
 
+// Create a simple orderItem object from the parameters
 function orderItem(id, quantity, price, name) {
   return {
     itemId: id,

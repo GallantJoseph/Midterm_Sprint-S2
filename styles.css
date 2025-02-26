@@ -324,6 +324,7 @@ footer {
 .order-item {
   grid-template-rows: auto 2fr 1fr 2.5fr auto;
 }
+
 /* name of item in container*/
 .item-name {
   color: white;
@@ -636,13 +637,13 @@ td {
 .foot {
   border-top: none;
 }
-#drink {
+
+#pastry,
+#salad,
+#side {
   display: none;
 }
 
-#pastry {
-  display: none;
-}
 .menuBtns {
   margin: auto;
   font-family: DotGothic16;
