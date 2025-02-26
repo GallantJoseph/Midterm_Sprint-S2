@@ -619,8 +619,27 @@ form input[type="radio"] {
   margin: 20px;
 }
 
-main h2 {
+.aboutUs h2,
+.visitUs h2,
+.bio-item h2,
+.reviewBox h2,
+.socials h2 {
   margin: auto;
+  margin-bottom: 20px;
+  font-family: DotGothic16;
+  text-align: center;
+  width: 98%;
+  background-color: rgba(255, 255, 255, 0.654);
+  padding: 10px;
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+
+#menu-section h2,
+#order-section h2 {
+  margin: auto;
+  margin-bottom: 20px;
   font-family: DotGothic16;
   text-align: center;
   width: 98%;
@@ -802,5 +821,9 @@ td {
   .order-item {
     scale: 80%;
   }
-
+  #menu-section h2,
+  #order-section h2 {
+    width: 90%;
+    scale: 70%;
+  }
 }
