@@ -159,29 +159,29 @@ function showPastry() {
 }
 
 function showSalad() {
-  let pastrySection = document.getElementById("salad");
+  let saladSection = document.getElementById("salad");
 
   // Check the current display style and toggle it
   if (
-    pastrySection.style.display === "none" ||
-    pastrySection.style.display === ""
+    saladSection.style.display === "none" ||
+    saladSection.style.display === ""
   ) {
-    pastrySection.style.display = "grid"; // Show pastrys
+    saladSection.style.display = "grid"; // Show pastrys
   } else {
-    pastrySection.style.display = "none"; // Hide
+    saladSection.style.display = "none"; // Hide
   }
 }
 
 function showSide() {
-  let pastrySection = document.getElementById("side");
+  let sideSection = document.getElementById("side");
 
   // Check the current display style and toggle it
   if (
-    pastrySection.style.display === "none" ||
-    pastrySection.style.display === ""
+    sideSection.style.display === "none" ||
+    sideSection.style.display === ""
   ) {
-    pastrySection.style.display = "grid"; // Show pastrys
+    sideSection.style.display = "grid"; // Show pastrys
   } else {
-    pastrySection.style.display = "none"; // Hide
+    sideSection.style.display = "none"; // Hide
   }
 }
