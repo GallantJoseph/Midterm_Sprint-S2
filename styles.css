@@ -740,12 +740,17 @@ td {
 }
 
 @media only screen and (max-width: 800px) {
-  .mainNav,
-  .socials {
+  .mainNav {
     scale: 90%;
   }
-
+  .socials {
+    scale: 90%;
+    padding: 10px;
+  }
   * {
     font-size: 10pt;
+  }
+  .socials img {
+    scale: 75%;
   }
 }
