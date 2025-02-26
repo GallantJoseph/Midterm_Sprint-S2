@@ -110,6 +110,9 @@ footer,
   background-color: rgba(255, 255, 255, 0.199);
   width: 150px;
 }
+.onPageCart {
+  background-color: rgba(255, 255, 255, 0.199);
+}
 
 /* creates a base box for contains on home page*/
 .aboutUs,
