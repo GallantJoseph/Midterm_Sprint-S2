@@ -501,7 +501,7 @@ form {
   color: #654835;
 }
 
-form #credit-card-info {
+#orderForm #credit-card-info {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
@@ -509,13 +509,13 @@ form #credit-card-info {
   transition: opacity 100ms ease-in-out;
 }
 
-form .form-element {
+#orderForm .form-element {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
 }
 
-form .radio-element {
+#orderForm .radio-element {
   display: grid;
   align-items: center;
   grid-template-areas:
@@ -538,7 +538,12 @@ form .radio-element {
   grid-area: radio-right;
 }
 
-form input[type="text"] {
+#orderForm {
+  grid-area: orderForm;
+  margin: 20px;
+}
+
+#orderForm input[type="text"] {
   font-size: 1rem;
   height: fit-content;
   padding: 5px;
@@ -549,7 +554,7 @@ form input[type="text"] {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
 
-form input[type="radio"] {
+#orderForm input[type="radio"] {
   margin-left: 8px;
 }
 
@@ -566,16 +571,14 @@ form input[type="radio"] {
 #order-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "h2 h2" "orderForm order-receipt" "statusText statusText";
+  grid-template-areas:
+    "h2 h2"
+    "orderForm order-receipt"
+    "statusText statusText";
 }
 
 #order-section h2 {
   grid-area: h2;
-}
-
-#orderForm {
-  grid-area: orderForm;
-  margin: 20px;
 }
 
 .menu-category {
