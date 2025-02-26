@@ -757,7 +757,6 @@ td {
     display: grid;
     grid-template-columns: 1fr;
     border-radius: 8px;
-    gap: 10px;
     margin: auto;
     justify-content: center;
   }
@@ -803,33 +802,5 @@ td {
   .order-item {
     scale: 80%;
   }
-  /* contain image within menu-item/order-item */
-  .menu-item img,
-  .order-item img {
-    border: 1px solid beige;
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  /* custom text inside item containers */
-  .menu-item h3,
-  .order-item h3 {
-    margin-bottom: 8px;
-    height: fit-content;
-  }
 
-  /* cart image  overlay showing only when an item is added to cart */
-  .menu-item .overlay,
-  .order-item .overlay {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    width: 216px;
-    height: 200px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    display: flex;
-    visibility: hidden;
-  }
 }
