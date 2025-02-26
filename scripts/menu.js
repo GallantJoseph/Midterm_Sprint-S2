@@ -129,3 +129,30 @@ function getItems() {
     return orderStorage;
   }
 }
+function showDrink() {
+  let drinkSection = document.getElementById("drink");
+
+  // Check the current display style and toggle it
+  if (
+    drinkSection.style.display === "none" ||
+    drinkSection.style.display === ""
+  ) {
+    drinkSection.style.display = "grid"; // Show drinks
+  } else {
+    drinkSection.style.display = "none"; // Hide
+  }
+}
+
+function showPastry() {
+  let pastrySection = document.getElementById("pastry");
+
+  // Check the current display style and toggle it
+  if (
+    pastrySection.style.display === "none" ||
+    pastrySection.style.display === ""
+  ) {
+    pastrySection.style.display = "grid"; // Show pastrys
+  } else {
+    pastrySection.style.display = "none"; // Hide
+  }
+}
