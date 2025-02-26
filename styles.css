@@ -780,6 +780,7 @@ td {
     justify-content: center;
   }
   /* main headder image for each page*/
+
   .mainHeader img {
     margin: auto;
     border-radius: 8px;
@@ -825,5 +826,8 @@ td {
   #order-section h2 {
     width: 90%;
     scale: 70%;
+  }
+  #order-receipt {
+    min-width: 200px;
   }
 }
