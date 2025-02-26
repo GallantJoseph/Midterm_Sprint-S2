@@ -265,7 +265,7 @@ footer {
 }
 
 #drink .menu-item {
-  background-image: url("../images/anastasiia-chepinska-lcfH0p6emhw-unsplash_cropped.png");
+  background-image: url("../images/drinkbackground.png");
 }
 
 #pastry .menu-item {
@@ -644,7 +644,27 @@ td {
   display: none;
 }
 
-.menuBtns {
+#pastry {
+  display: none;
+}
+#drinkBtn {
+  margin: auto;
+  font-family: DotGothic16;
+  font-size: 20pt;
+  text-align: center;
+  width: 98%;
+  background-color: rgba(255, 255, 255, 0.654);
+
+  padding: 10px;
+  border: 4px solid rgba(246, 246, 238, 0.631);
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
+}
+#drinkBtn:hover {
+  background-color: rgba(255, 255, 255, 0.852);
+  color: black;
+}
+#pastryBtn {
   margin: auto;
   font-family: DotGothic16;
   font-size: 20pt;
@@ -656,7 +676,7 @@ td {
   border-radius: 8px;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
 }
-.menuBtns:hover {
+#pastryBtn:hover {
   background-color: rgba(255, 255, 255, 0.852);
   color: black;
 }
