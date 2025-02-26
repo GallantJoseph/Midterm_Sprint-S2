@@ -740,11 +740,38 @@ td {
 }
 
 @media only screen and (max-width: 800px) {
+  #pageContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 8px;
+    gap: 10px;
+    margin: auto;
+    justify-content: center;
+  }
+  /* main headder image for each page*/
+  .mainHeader img {
+    margin: auto;
+    border-radius: 8px;
+    scale: 80%;
+  }
   .mainNav {
-    scale: 90%;
+    scale: 80%;
+  }
+  .mainNav img {
+    scale: 80%;
+  }
+  .aboutUs,
+  .visitUs,
+  .bio-item,
+  .reviewBox,
+  .socials,
+  footer {
+    scale: 80%;
+  }
+  footer {
+    font-size: 12pt;
   }
   .socials {
-    scale: 90%;
     padding: 10px;
   }
   * {
@@ -752,5 +779,43 @@ td {
   }
   .socials img {
     scale: 75%;
+  }
+  .menuBtns {
+    scale: 80%;
+  }
+
+  /* item template to hold info picture price ect.*/
+  .menu-item,
+  .order-item {
+    scale: 80%;
+  }
+  /* contain image within menu-item/order-item */
+  .menu-item img,
+  .order-item img {
+    border: 1px solid beige;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  /* custom text inside item containers */
+  .menu-item h3,
+  .order-item h3 {
+    margin-bottom: 8px;
+    height: fit-content;
+  }
+
+  /* cart image  overlay showing only when an item is added to cart */
+  .menu-item .overlay,
+  .order-item .overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 216px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    display: flex;
+    visibility: hidden;
   }
 }
