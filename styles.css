@@ -66,7 +66,7 @@ footer,
   padding-left: 40px;
   padding-right: 50px;
   position: sticky;
-  top: 0;
+  top: 16px;
   z-index: 1000; /* Ensure it stays above other content */
 }
 /* controls all nav bar links */
@@ -263,6 +263,15 @@ footer {
   color: #eae9e8;
   transform: scale(1.1);
 }
+
+#drink .menu-item {
+  background-image: url("../images/anastasiia-chepinska-lcfH0p6emhw-unsplash_cropped.png");
+}
+
+#pastry .menu-item {
+  background-image: url("../images/leonid-portnoy-u5jwIlKvrSk-unsplash_cropped.png");
+}
+
 /* item template to hold info picture price ect.*/
 .menu-item,
 .order-item {
@@ -333,7 +342,7 @@ footer {
 }
 /* description of item in container*/
 .item-description {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: white;
   margin: 8px;
   height: fit-content;
