@@ -224,7 +224,7 @@ footer,
 /* social media icons */
 .socials img {
   display: inline-block;
-  padding-right: 30px;
+  padding-right: 16px;
   transition: transform 0.3s ease;
 } /* hover affect scaling up social icons*/
 .socials img:hover {
@@ -270,6 +270,14 @@ footer {
 
 #pastry .menu-item {
   background-image: url("../images/leonid-portnoy-u5jwIlKvrSk-unsplash_cropped.png");
+}
+
+#salad .menu-item {
+  background-image: url("../images/salad.png");
+}
+
+#side .menu-item {
+  background-image: url("../images/sides.png");
 }
 
 /* item template to hold info picture price ect.*/
@@ -547,6 +555,11 @@ form input[type="radio"] {
   grid-template-columns: 1fr;
 }
 
+#menu-section h2,
+#order-section h2 {
+  font-size: 1.6rem;
+}
+
 #order-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -777,6 +790,7 @@ td {
   * {
     font-size: 10pt;
   }
+
   .socials img {
     scale: 75%;
   }
