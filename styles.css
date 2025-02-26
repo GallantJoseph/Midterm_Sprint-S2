@@ -770,11 +770,9 @@ td {
 
 @media only screen and (max-width: 500px) {
   #pageContainer {
-    display: grid;
-    grid-template-columns: 1fr;
-    border-radius: 8px;
     margin: auto;
     justify-content: center;
+    gap: 8px;
   }
   /* main headder image for each page*/
 
@@ -818,14 +816,18 @@ td {
   .menu-item,
   .order-item {
     scale: 80%;
-  }
+    margin: 8px;
+  } 
+
   #menu-section h2,
   #order-section h2 {
     width: 90%;
     scale: 70%;
   }
 
-  #orderForm {
+  #orderForm,
+  #statusText,
+  #updateStatusText {
     scale: 70%;
   }
 
