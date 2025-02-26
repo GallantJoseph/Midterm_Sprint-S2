@@ -617,6 +617,7 @@ form input[type="radio"] {
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.732);
   grid-area: order-receipt;
   margin: 20px;
+  min-width: 414px;
 }
 
 .aboutUs h2,
@@ -765,10 +766,6 @@ td {
   #statusText {
     width: fit-content;
   }
-
-  #order-receipt {
-    min-width: 414px;
-  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -825,5 +822,13 @@ td {
   #order-section h2 {
     width: 90%;
     scale: 70%;
+  }
+
+  #orderForm {
+    scale: 70%;
+  }
+
+  #order-receipt {
+    min-width: 200px;
   }
 }
