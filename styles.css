@@ -818,9 +818,9 @@ td {
   /* item template to hold info picture price ect.*/
   .menu-item,
   .order-item {
-    scale: 80%;
+    scale: 100%;
     margin: 8px;
-  } 
+  }
 
   #menu-section h2,
   #order-section h2 {
